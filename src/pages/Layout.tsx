@@ -3,20 +3,22 @@ import { Link, Outlet } from "react-router-dom";
 export const Layout = () => {
 	return (
 		<>
-			<header className="w-100">
-				<nav className="navbar navbar-expand-lg fixed-top  bg-light">
+			<header>
+				<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 					<div className="container-fluid">
 						<a className="navbar-brand" href="#">
-							Navbar
+							LOGO
 						</a>
-						<button className="navbar-toggler" type="button">
+						<button
+							className="navbar-toggler collapsed"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarCollapse"
+						>
 							<span className="navbar-toggler-icon"></span>
 						</button>
-						<div
-							className="collapse navbar-collapse"
-							id="navbarSupportedContent"
-						>
-							<ul className="navbar-nav me-auto mb-2 mb-lg-0">
+						<div className="navbar-collapse collapse" id="navbarCollapse">
+							<ul className="navbar-nav me-auto mb-2 mb-md-0">
 								<li className="nav-item">
 									<Link to="/" className="nav-link active">
 										Home

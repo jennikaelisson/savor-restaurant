@@ -1,0 +1,17 @@
+:root {
+    --white: #e1e1e1;
+    --black: #1b191a;
+    --dark-gray: #373d48;
+    --light-green: #d6dddb;
+    --light-blue: #dde3e6;
+    --footer-bg: #1a1a1a;
+
+    
+    --font-size: 13px;
+
+
+    /* FONT OPTIONS */
+    --Alata: 'Alata', sans-serif;
+    --Hammersmith-One: 'Hammersmith One', sans-serif;
+    --Open-Sans: 'Open Sans', sans-serif;
+}

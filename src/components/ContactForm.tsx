@@ -1,52 +1,69 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+
+const useForm = (initialState:any) => {
+ const [formData, setFormData] = useState(initialState)
+
+ const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+        ...formData,
+        [e.target.id] :e.target.value
+    });
+ };
+ const resetForm = () => {
+    setFormData(initialState);
+ };
+
+  return {
+    formData,
+    handleChange,
+    resetForm
+  };
+};
 
 const ContactForm = () => {
-
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email,setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [message, setMessage] = useState('');
-
+    const {formData, handleChange, resetForm} = useForm({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        email: '',
+        message: ''
+    }); 
+    
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPhoneNumber('');
-        setMessage('');
-    }
+        resetForm();
+        
+    };
 
    return (
    <section>
     <form onSubmit={handleSubmit}>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
-        <input type="text" className="form-control" id="exampleFormControlInput1" 
-        value={firstName} onChange={(e) => setFirstName(e.target.value)}  />
+        <input type="text" className="form-control" id="firstName" 
+        value={formData.firstName} onChange={handleChange} />
     </div>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
-        <input type="text" className="form-control" id="exampleFormControlInput1"
-        value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        <input type="text" className="form-control" id="lastName"
+        value={formData.lastName} onChange={handleChange} />
     </div>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">Phone Number</label>
-        <input type="number" className="form-control" id="exampleFormControlInput1"
-        value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+        <input type="number" className="form-control" id="phoneNumber"
+        value={formData.phoneNumber} onChange={handleChange} />
     </div>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="email" className="form-control" id="email" placeholder="name@example.com" value={formData.email} onChange={handleChange} />
     </div>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlTextarea1" className="form-label">Message</label>
-        <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} 
-        value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+        <textarea className="form-control" id="message" rows={3} 
+        value={formData.message} onChange={handleChange}></textarea>
     </div>
     <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+    <input type="checkbox" className="form-check-input" id="policyCheckbox" />
     <label className="form-check-label" htmlFor="exampleCheck1">I have read and understood the privacy policy
     </label> 
     </div>
@@ -65,7 +82,7 @@ const ContactForm = () => {
           <div className="modal-content">
            <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">Thanks for contacting us</h5>
-        `   <button
+           <button
             type="button"
             className="btn-close"
             data-bs-dismiss="modal"

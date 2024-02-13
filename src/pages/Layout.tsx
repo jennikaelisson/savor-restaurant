@@ -7,7 +7,7 @@ export const Layout = () => {
 			<Header />
 
 			<main className="flex-shrink-0 mt-5">
-				<div className="container py-2">
+				<div className="container py-4">
 					<Outlet />
 				</div>
 			</main>

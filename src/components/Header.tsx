@@ -4,10 +4,10 @@ export const Header = () => {
 	return (
 		<>
 			<header>
-				<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-black">
 					<div className="container-fluid">
 						<a className="navbar-brand" href="#">
-							LOGO
+							<img src="src/assets/logo.png" height="40" />
 						</a>
 						<button
 							className="navbar-toggler collapsed"

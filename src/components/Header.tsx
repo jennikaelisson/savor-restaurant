@@ -34,6 +34,11 @@ export const Header = () => {
 										Contact us
 									</Link>
 								</li>
+								<li className="nav-item">
+									<Link to="/cheat" className="nav-link text-danger">
+										Cheat
+									</Link>
+								</li>
 							</ul>
 						</div>
 					</div>

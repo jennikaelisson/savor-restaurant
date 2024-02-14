@@ -38,12 +38,13 @@ const ContactForm = () => {
    return (
    <section>
     <form onSubmit={handleSubmit}>
-    <div className={"mb-3"}>
+        <div className="row">
+    <div className={"mb-3 col-md-4"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
         <input type="text" className="form-control" id="firstName" 
         value={formData.firstName} onChange={handleChange} />
     </div>
-    <div className={"mb-3"}>
+    <div className={"mb-3 col-md-4"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
         <input type="text" className="form-control" id="lastName"
         value={formData.lastName} onChange={handleChange} />
@@ -55,12 +56,14 @@ const ContactForm = () => {
     </div>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-        <input type="email" className="form-control" id="email" placeholder="name@example.com" value={formData.email} onChange={handleChange} />
+        <input type="email" className="form-control" id="email" placeholder="name@example.com" 
+        value={formData.email} onChange={handleChange} />
     </div>
     <div className={"mb-3"}>
         <label htmlFor="exampleFormControlTextarea1" className="form-label">Message</label>
         <textarea className="form-control" id="message" rows={3} 
         value={formData.message} onChange={handleChange}></textarea>
+    </div>
     </div>
     <div className="mb-3 form-check">
     <input type="checkbox" className="form-check-input" id="policyCheckbox" />

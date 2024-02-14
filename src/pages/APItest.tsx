@@ -5,10 +5,10 @@ const APItest = () => {
 	const [restaurantData, setRestaurantData] = useState<any>(null);
 	const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
 
-	const fetchRestaurantData = async () => {
+	const fetchData = async (endpoint: string) => {
 		try {
 			const response = await fetch(
-				`https://school-restaurant-api.azurewebsites.net/restaurant/${restaurantID}`,
+				`https://school-restaurant-api.azurewebsites.net/${endpoint}/${restaurantID}`,
 				{
 					method: "GET",
 					headers: {
@@ -19,30 +19,14 @@ const APItest = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				setRestaurantData(data);
-			} else {
-				console.error("Error:", response.statusText);
-			}
-		} catch (error) {
-			console.error("Error:", error);
-		}
-	};
-
-	const fetchRestaurantBookings = async () => {
-		try {
-			const response = await fetch(
-				`https://school-restaurant-api.azurewebsites.net/booking/restaurant/${restaurantID}`,
-				{
-					method: "GET",
-					headers: {
-						accept: "application/json",
-					},
+				switch (endpoint) {
+					case "restaurant":
+						setRestaurantData(data);
+						break;
+					case "booking/restaurant":
+						setRestaurantBookings(data);
+						break;
 				}
-			);
-
-			if (response.ok) {
-				const data = await response.json();
-				setRestaurantBookings(data);
 			} else {
 				console.error("Error:", response.statusText);
 			}
@@ -52,8 +36,8 @@ const APItest = () => {
 	};
 
 	useEffect(() => {
-		fetchRestaurantData();
-		fetchRestaurantBookings();
+		fetchData("restaurant");
+		fetchData("booking/restaurant");
 	}, []); // Sebastian dont approve this way [], fix later :)
 
 	return (

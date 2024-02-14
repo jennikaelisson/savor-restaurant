@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
+	const [navOpen, setNavOpen] = useState(true);
+
 	return (
 		<>
 			<header>
@@ -14,28 +17,48 @@ export const Header = () => {
 							type="button"
 							data-bs-toggle="collapse"
 							data-bs-target="#navbarCollapse"
+							onClick={() => setNavOpen(!navOpen)}
 						>
 							<span className="navbar-toggler-icon"></span>
 						</button>
-						<div className="navbar-collapse collapse" id="navbarCollapse">
+						<div
+							className={`navbar-collapse collapse ${navOpen ? "show" : ""}`}
+							id="navbarCollapse"
+						>
 							<ul className="navbar-nav me-auto mb-2 mb-md-0">
 								<li className="nav-item border-end">
-									<Link to="/" className="nav-link active">
+									<Link
+										to="/"
+										className="nav-link active"
+										onClick={() => setNavOpen(false)}
+									>
 										Home
 									</Link>
 								</li>
 								<li className="nav-item  border-end">
-									<Link to="/book" className="nav-link ">
+									<Link
+										to="/book"
+										className="nav-link "
+										onClick={() => setNavOpen(false)}
+									>
 										Book table
 									</Link>
 								</li>
 								<li className="nav-item   border-end">
-									<Link to="/contact" className="nav-link ">
+									<Link
+										to="/contact"
+										className="nav-link "
+										onClick={() => setNavOpen(false)}
+									>
 										Contact us
 									</Link>
 								</li>
 								<li className="nav-item">
-									<Link to="/cheat" className="nav-link text-danger">
+									<Link
+										to="/cheat"
+										className="nav-link text-danger"
+										onClick={() => setNavOpen(false)}
+									>
 										Cheat
 									</Link>
 								</li>

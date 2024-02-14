@@ -53,13 +53,22 @@ export const Header = () => {
 										Contact us
 									</Link>
 								</li>
-								<li className="nav-item">
+								<li className="nav-item  border-end">
 									<Link
 										to="/cheat"
 										className="nav-link text-danger"
 										onClick={() => setNavOpen(false)}
 									>
 										Cheat
+									</Link>
+								</li>
+								<li className="nav-item">
+									<Link
+										to="/APItest"
+										className="nav-link text-warning"
+										onClick={() => setNavOpen(false)}
+									>
+										API TEST
 									</Link>
 								</li>
 							</ul>

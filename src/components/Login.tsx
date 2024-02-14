@@ -1,19 +1,21 @@
-// Login.tsx
 import { useState } from "react";
 
-const Login = () => {
+interface ILoginProps {
+	handleAdminStatus: (value: boolean) => void;
+}
+const Login = ({ handleAdminStatus }: ILoginProps) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 
 	const handleLogin = () => {
-		if (username === "admin" && password === "password") {
-			console.log(username);
-			console.log(password);
-			console.log("success");
+		if (username === "admin" && password === "admin") {
 			setError("");
+			handleAdminStatus(true);
 		} else {
-			setError("Wrong username or password");
+			setError("Wrong username or password... or both ;) ");
+			setPassword("");
+			setUsername("");
 		}
 	};
 

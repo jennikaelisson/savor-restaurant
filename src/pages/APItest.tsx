@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-const restaurantID = "65cc7dddf65c4399fb07d036";
 
 const APItest = () => {
+	const restaurantID = "65cc7dddf65c4399fb07d036";
 	const [restaurantData, setRestaurantData] = useState<any>(null);
 	const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
 

@@ -1,4 +1,4 @@
-export const Cheat = () => {
+const Cheat = () => {
 	return (
 		<>
 			<p className="h1">Cheatpage</p>
@@ -173,3 +173,5 @@ export const Cheat = () => {
 		</>
 	);
 };
+
+export default Cheat;

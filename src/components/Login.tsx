@@ -1,5 +1,5 @@
 // Login.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Login = () => {
 	const [username, setUsername] = useState("");

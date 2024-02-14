@@ -1,6 +1,6 @@
 import Login from "../components/Login";
 
-export const Admin = () => {
+const Admin = () => {
 	return (
 		<>
 			<h1>Admin</h1>
@@ -9,3 +9,4 @@ export const Admin = () => {
 		</>
 	);
 };
+export default Admin;

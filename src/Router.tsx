@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "./pages/Layout";
-import { Home } from "./pages/Home";
-import { Book } from "./pages/Book";
-import { Contact } from "./pages/Contact";
-import { Admin } from "./pages/Admin";
-import { Cheat } from "./pages/Cheat";
-import { Errorpage } from "./pages/Errorpage";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Book from "./pages/Book";
+import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
+import Cheat from "./pages/Cheat";
+import Errorpage from "./pages/Errorpage";
 import APItest from "./pages/APItest";
 
 export const router = createBrowserRouter([

@@ -1,44 +1,49 @@
-import axios from "axios";
+import {
+	getBookingsService,
+	getRestaurantDataService,
+	createBookingService,
+	deleteBookingService,
+} from "../services/bookingService";
 import { useState, useEffect } from "react";
 
 const APItest = () => {
-	const restaurantID = "65cc7dddf65c4399fb07d036";
 	const [restaurantData, setRestaurantData] = useState<any>(null);
 	const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
+	const [bookingFormData, setBookingFormData] = useState<string>("");
+	const [deleteInput, setDeleteInput] = useState<string>("");
 
-	const fetchData = async (endpoint: string) => {
-		try {
-			const response = await axios.get(
-				`https://school-restaurant-api.azurewebsites.net/${endpoint}/${restaurantID}`,
-				{
-					method: "GET",
-					headers: {
-						accept: "application/json",
-					},
-				}
-			);
+	const fetchData = async () => {
+		setRestaurantData(await getRestaurantDataService());
+		setRestaurantBookings(await getBookingsService());
+	};
 
-			if (response.status === 200) {
-				const data = response.data;
-				switch (endpoint) {
-					case "restaurant":
-						setRestaurantData(data);
-						break;
-					case "booking/restaurant":
-						setRestaurantBookings(data);
-						break;
-				}
-			} else {
-				console.error("Error:", response.statusText);
-			}
-		} catch (error) {
-			console.error("Error:", error);
-		}
+	const createNewBooking = async () => {
+		const bookingData = JSON.parse(bookingFormData);
+		await createBookingService(bookingData);
+		fetchData();
+	};
+
+	const deleteBooking = async () => {
+		await deleteBookingService(deleteInput);
+		fetchData();
 	};
 
 	useEffect(() => {
-		fetchData("restaurant");
-		fetchData("booking/restaurant");
+		setBookingFormData(
+			JSON.stringify({
+				restaurantId: "65cc7dddf65c4399fb07d036",
+				date: "2022-03-21",
+				time: "18:00",
+				numberOfGuests: 4,
+				customer: {
+					name: "Franzén",
+					lastname: "Sebastian",
+					email: "someone@somedomain.com",
+					phone: "070-1112233",
+				},
+			})
+		);
+		fetchData();
 	}, []); // Sebastian dont approve this way [], fix later :)
 
 	return (
@@ -59,6 +64,29 @@ const APItest = () => {
 						<span className="visually-hidden">Loading...</span>
 					</div>
 				)}
+			</div>
+
+			<b>Create booking:</b>
+			<div className="bg-light border">
+				<textarea
+					className="form-control"
+					value={bookingFormData}
+					onChange={(e) => setBookingFormData(e.target.value)}
+				/>
+				<button className="btn btn-success" onClick={createNewBooking}>
+					Skapa
+				</button>
+			</div>
+
+			<b>Delete booking:</b>
+			<div className="bg-light border">
+				<input
+					value={deleteInput}
+					onChange={(e) => setDeleteInput(e.target.value)}
+				/>
+				<button className="btn btn-danger" onClick={deleteBooking}>
+					Ta bort
+				</button>
 			</div>
 
 			<b>GET Bookings:</b>

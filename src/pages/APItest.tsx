@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 
 const APItest = () => {
@@ -7,7 +8,7 @@ const APItest = () => {
 
 	const fetchData = async (endpoint: string) => {
 		try {
-			const response = await fetch(
+			const response = await axios.get(
 				`https://school-restaurant-api.azurewebsites.net/${endpoint}/${restaurantID}`,
 				{
 					method: "GET",
@@ -17,8 +18,8 @@ const APItest = () => {
 				}
 			);
 
-			if (response.ok) {
-				const data = await response.json();
+			if (response.status === 200) {
+				const data = response.data;
 				switch (endpoint) {
 					case "restaurant":
 						setRestaurantData(data);

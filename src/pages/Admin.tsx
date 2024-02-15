@@ -20,7 +20,7 @@ const Admin = () => {
       {admin ? (
         <>
           <div className="p-2 bg-light border my-2">
-            <div>
+            <div className="col-12">
               <h1>Admin</h1>
             </div>
             <div>calendar</div>

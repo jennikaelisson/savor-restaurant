@@ -1,4 +1,4 @@
-import { get, post } from "../services/serviceBase";
+import { get, post, delete } from "../services/serviceBase";
 
 const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net";
 const restaurantID = "65cc7dddf65c4399fb07d036";
@@ -19,6 +19,14 @@ export const getBookings = async () => {
 
 export const createBooking = async (data: object) => {
 	const response = await post(API_BASE_URL + "/booking/create/", data);
+	return response.data;
+};
+
+
+export const deleteBooking = async () => {
+	const response = await delete(
+		API_BASE_URL + "/booking/restaurant/" + restaurantID
+	);
 
 	return response.data;
 };

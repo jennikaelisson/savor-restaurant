@@ -1,22 +1,53 @@
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import {
+	getBookingsService,
+	createBookingService,
+} from "../services/bookingService.ts";
+
 import { useState, useEffect } from "react";
 
 type DatePiece = Date | null;
 type DateValue = DatePiece | [DatePiece, DatePiece];
 
 const Book = () => {
+	const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
 	const [selectedDate, changeDate] = useState<DateValue>(new Date());
 	const [selectedGuests, changeGuests] = useState(2);
 	const [selectedTime, changeTime] = useState("18:00");
+	let bookedTables = Array();
 
 	useEffect(() => {
 		checkAvailability();
-	}, [selectedGuests, selectedDate]);
+	}, [selectedGuests, selectedDate, selectedTime]);
+
+	useEffect(() => {
+		console.log("loop bookings");
+		restaurantBookings?.forEach((element: Object) => {
+			console.log(element);
+		});
+	}, [restaurantBookings]);
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {
+		setRestaurantBookings(await getBookingsService());
+	};
+
+	const formatDate = (date: Date) => {
+		const year = date.getFullYear();
+		const month = ("0" + (date.getMonth() + 1)).slice(-2);
+		const day = ("0" + date.getDate()).slice(-2);
+		return `${year}-${month}-${day}`;
+	};
 
 	const checkAvailability = () => {
 		console.log(
-			`Checking availability for ${selectedGuests} at ${selectedDate}`
+			`Checking availability for ${selectedGuests} at ${formatDate(
+				selectedDate
+			)}`
 		);
 	};
 
@@ -36,7 +67,12 @@ const Book = () => {
 			</div>
 			<p className="h2">Select a date</p>
 			<div className="bg-light border p-2">
-				<Calendar onChange={changeDate} value={selectedDate} />
+				<Calendar
+					onChange={changeDate}
+					value={selectedDate}
+					minDate={new Date()}
+					maxDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
+				/>
 			</div>
 
 			<p className="h2">Select a time</p>
@@ -46,7 +82,8 @@ const Book = () => {
 					className="btn-check"
 					name="options-outlined"
 					id="success-outlined"
-					checked
+					checked={selectedTime === "18:00"}
+					onChange={() => changeTime("18:00")}
 				/>
 				<label
 					className="btn btn-outline-success mx-2"
@@ -60,6 +97,8 @@ const Book = () => {
 					className="btn-check"
 					name="options-outlined"
 					id="danger-outlined"
+					checked={selectedTime === "21:00"}
+					onChange={() => changeTime("21:00")}
 				/>
 				<label
 					className="btn btn-outline-success mx-2"

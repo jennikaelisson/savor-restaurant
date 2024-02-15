@@ -15,18 +15,23 @@ const Book = () => {
 	const [selectedDate, changeDate] = useState<DateValue>(new Date());
 	const [selectedGuests, changeGuests] = useState(2);
 	const [selectedTime, changeTime] = useState("18:00");
-	let bookedTables = Array();
 
 	useEffect(() => {
-		checkAvailability();
-	}, [selectedGuests, selectedDate, selectedTime]);
-
-	useEffect(() => {
-		console.log("loop bookings");
+		const freeTables: { [key: string]: number } = {
+			"18:00": 15,
+			"21:00": 15,
+		};
 		restaurantBookings?.forEach((element: Object) => {
-			console.log(element);
+			if (element.date == formatDate(selectedDate)) {
+				const numberOfTables = Math.floor((element.numberOfGuests - 1) / 6) + 1;
+				freeTables[element.time] -= numberOfTables;
+			}
 		});
-	}, [restaurantBookings]);
+
+		let tablesNeeded = Math.floor((selectedGuests - 1) / 6) + 1;
+		console.log(`Needed (${tablesNeeded}) `);
+		console.log(freeTables);
+	}, [selectedGuests, selectedDate, selectedTime]);
 
 	useEffect(() => {
 		fetchData();
@@ -41,14 +46,6 @@ const Book = () => {
 		const month = ("0" + (date.getMonth() + 1)).slice(-2);
 		const day = ("0" + date.getDate()).slice(-2);
 		return `${year}-${month}-${day}`;
-	};
-
-	const checkAvailability = () => {
-		console.log(
-			`Checking availability for ${selectedGuests} at ${formatDate(
-				selectedDate
-			)}`
-		);
 	};
 
 	return (

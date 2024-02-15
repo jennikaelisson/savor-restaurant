@@ -5,12 +5,12 @@ const Footer = () => {
 			<footer className="footer mt-auto py-3 bg-light">
 				<div className="container">
 					<div className="mx-0 row">
-						<div className="col-md-8 p-0 col-xs-12">
+						<div className="col-12 col-md-8 p-0">
 							<div className="p-1">
 								<h1>SAVOR</h1>
 							</div>
 							<div className="row">
-								<div className="col-sm-3 col-xs-12">
+								<div className="col-12 col-sm-3">
 									{/* display these 3 as flex wrap */}
 									<div className="p-1">
 										<h3>Sitemap</h3>
@@ -40,7 +40,7 @@ const Footer = () => {
 										<div>icons</div>
 									</div>
 								</div>
-								<div className="col-sm-4 col-xs-12">
+								<div className="col-12 col-sm-4">
 									<div className="p-1">
 										<h3>Locations</h3>
 										<p>
@@ -67,7 +67,7 @@ const Footer = () => {
 										</p>
 									</div>
 								</div>
-								<div className="col-sm-5 col-xs-12">
+								<div className="col-12 col-sm-5">
 									<div className="p-1">
 										<h3>Reservations</h3>
 									</div>
@@ -77,7 +77,7 @@ const Footer = () => {
 								</div>
 							</div>
 						</div>
-						<div className="col-md-4 p-0 col-xs-12">
+						<div className="col-12 col-md-4 p-0">
 							<div className="p-1">
 								<h2>Other branches</h2>
 							</div>

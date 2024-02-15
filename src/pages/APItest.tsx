@@ -4,7 +4,10 @@ import {
 	createBookingService,
 	deleteBookingService,
 } from "../services/bookingService";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6fbb04c289aa0d1d85c9f9e7d59d8813c46c07ba
 import { useState, useEffect } from "react";
 
 const APItest = () => {

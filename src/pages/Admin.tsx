@@ -30,21 +30,21 @@ const Admin = () => {
               <div className="col-12 col-lg-5 col-xl-4">
                 <AdminBook />
               </div>
-              <div className="col-12 col-md-6 col-lg-3  col-xl-4 p-2">
+              {/* <div className="col-12 col-md-6 col-lg-3  col-xl-4 p-2">
                 <h4>6PM</h4>
                 <div>list of bookings</div>
               </div>
               <div className="col-12 col-md-6 col-lg-4  col-xl-4 p-2">
                 <h4>9PM</h4>
                 <div>list of bookings</div>
-              </div>
+              </div> */}
             </div>
             <div className="p-2">
               <div>
                 <h3>Add booking</h3>
               </div>
               <div>
-                <Book />
+                <Book /> 
               </div>
             </div>
           </div>

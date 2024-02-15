@@ -1,7 +1,9 @@
+import HomeLayout from '../components/HomeLayout';
+
 const Home = () => {
 	return (
 		<>
-			<h1>Start</h1>
+			<HomeLayout />
 		</>
 	);
 };

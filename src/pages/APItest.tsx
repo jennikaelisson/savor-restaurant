@@ -1,8 +1,8 @@
 import {
-	getBookings,
-	getRestaurantData,
-	createBooking,
-	deleteBooking,
+	getBookingsService,
+	getRestaurantDataService,
+	createBookingService,
+	deleteBookingService,
 } from "../services/bookingService";
 import { useState, useEffect } from "react";
 
@@ -10,15 +10,21 @@ const APItest = () => {
 	const [restaurantData, setRestaurantData] = useState<any>(null);
 	const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
 	const [bookingFormData, setBookingFormData] = useState<string>("");
+	const [deleteInput, setDeleteInput] = useState<string>("");
 
 	const fetchData = async () => {
-		setRestaurantData(await getRestaurantData());
-		setRestaurantBookings(await getBookings());
+		setRestaurantData(await getRestaurantDataService());
+		setRestaurantBookings(await getBookingsService());
 	};
 
 	const createNewBooking = async () => {
 		const bookingData = JSON.parse(bookingFormData);
-		await createBooking(bookingData);
+		await createBookingService(bookingData);
+		fetchData();
+	};
+
+	const deleteBooking = async () => {
+		await deleteBookingService(deleteInput);
 		fetchData();
 	};
 
@@ -64,12 +70,22 @@ const APItest = () => {
 			<div className="bg-light border">
 				<textarea
 					className="form-control"
-					placeholder="Enter booking data JSON here"
 					value={bookingFormData}
 					onChange={(e) => setBookingFormData(e.target.value)}
 				/>
-				<button className="btn btn-primary" onClick={createNewBooking}>
+				<button className="btn btn-success" onClick={createNewBooking}>
 					Skapa
+				</button>
+			</div>
+
+			<b>Delete booking:</b>
+			<div className="bg-light border">
+				<input
+					value={deleteInput}
+					onChange={(e) => setDeleteInput(e.target.value)}
+				/>
+				<button className="btn btn-danger" onClick={deleteBooking}>
+					Ta bort
 				</button>
 			</div>
 

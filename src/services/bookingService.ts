@@ -1,4 +1,4 @@
-import { get, post, del } from "../services/serviceBase";
+import { get, post, del } from "../services/serviceBase.ts";
 
 const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net";
 const restaurantID = "65cc7dddf65c4399fb07d036";

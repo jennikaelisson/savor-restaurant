@@ -3,11 +3,7 @@ import {
 	getRestaurantDataService,
 	createBookingService,
 	deleteBookingService,
-} from "../services/bookingService";
-<<<<<<< HEAD
-
-=======
->>>>>>> 6fbb04c289aa0d1d85c9f9e7d59d8813c46c07ba
+} from "../services/bookingService.ts";
 import { useState, useEffect } from "react";
 
 const APItest = () => {
@@ -78,7 +74,7 @@ const APItest = () => {
 					onChange={(e) => setBookingFormData(e.target.value)}
 				/>
 				<button className="btn btn-success" onClick={createNewBooking}>
-					Skapa
+					CREATE
 				</button>
 			</div>
 
@@ -89,7 +85,7 @@ const APItest = () => {
 					onChange={(e) => setDeleteInput(e.target.value)}
 				/>
 				<button className="btn btn-danger" onClick={deleteBooking}>
-					Ta bort
+					DELETE
 				</button>
 			</div>
 

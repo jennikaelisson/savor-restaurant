@@ -9,29 +9,29 @@ import { useState, useEffect } from "react";
 
 const APItest = () => {
 	const [bookings, setBookings] = useState<any[]>([]);
-	const [customers, setCustomers] = useState<{
-		[key: string]: any;
-	}>({});
+	const [customers, setCustomers] = useState<any[]>([]);
 
 	const fetchData = async () => {
-		const bookingsFetch = await getBookingsService();
+		try {
+			const bookingsFetch = await getBookingsService();
+			setBookings(bookingsFetch || []);
 
-		setBookings(bookingsFetch);
+			const customerPromises = (bookingsFetch || []).map(
+				async (booking: any) => {
+					const fetchedCustomerInfo = await getCustomerDataService(
+						booking.customerId
+					);
+					setCustomers((prevCustomerInfo) => ({
+						...prevCustomerInfo,
+						[booking.customerId]: fetchedCustomerInfo[0],
+					}));
+				}
+			);
 
-		// Fetch customer data for each booking
-		bookingsFetch?.forEach((booking: any) => {
-			fetchCustomerData(booking.customerId);
-		});
-	};
-
-	const fetchCustomerData = async (customerId: string) => {
-		const fetchedCustomerInfo = await getCustomerDataService(customerId);
-		console.log(fetchedCustomerInfo);
-
-		setCustomers((prevCustomerInfo) => ({
-			...prevCustomerInfo,
-			[customerId]: fetchedCustomerInfo[0],
-		}));
+			customerPromises.forEach(async (promise) => await promise);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
 	};
 
 	const updateBooking = async (bookingID: string) => {
@@ -48,15 +48,12 @@ const APItest = () => {
 	};
 
 	useEffect(() => {
-		fetchData();
+		try {
+			fetchData();
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
 	}, []);
-
-	/*
-	useEffect(() => {
-		bookings?.forEach((booking: any) => {
-			fetchCustomerData(booking.customerId);
-		});
-	}, [bookings]);*/
 
 	const handleInputChange = (
 		entityID: string,

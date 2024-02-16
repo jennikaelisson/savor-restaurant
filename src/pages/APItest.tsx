@@ -10,7 +10,6 @@ const APItest = () => {
 	const [restaurantData, setRestaurantData] = useState<any>(null);
 	const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
 	const [bookingFormData, setBookingFormData] = useState<string>("");
-	const [deleteInput, setDeleteInput] = useState<string>("");
 
 	const fetchData = async () => {
 		setRestaurantData(await getRestaurantDataService());
@@ -23,8 +22,8 @@ const APItest = () => {
 		fetchData();
 	};
 
-	const deleteBooking = async () => {
-		await deleteBookingService(deleteInput);
+	const deleteBooking = async (bookingID: string) => {
+		await deleteBookingService(bookingID);
 		fetchData();
 	};
 
@@ -78,28 +77,25 @@ const APItest = () => {
 				</button>
 			</div>
 
-			<b>Delete booking:</b>
-			<div className="bg-light border">
-				<input
-					value={deleteInput}
-					onChange={(e) => setDeleteInput(e.target.value)}
-				/>
-				<button className="btn btn-danger" onClick={deleteBooking}>
-					DELETE
-				</button>
-			</div>
-
 			<b>GET Bookings:</b>
 			<div className="bg-light border">
 				{restaurantBookings && restaurantBookings.length > 0 ? (
 					<>
 						<h2>Bookings</h2>
 						{restaurantBookings.map((booking: any) => (
-							<div key={booking._id} className="bg-warning">
+							<div key={booking._id} className="bg-warning my-2">
 								<p>ID: {booking._id}</p>
 								<p>Date: {booking.date}</p>
 								<p>Time: {booking.time}</p>
 								<p>Number of Guests: {booking.numberOfGuests}</p>
+								<div>
+									<button
+										className="btn btn-danger"
+										onClick={() => deleteBooking(booking._id)}
+									>
+										DELETE
+									</button>
+								</div>
 							</div>
 						))}
 					</>

@@ -1,0 +1,10 @@
+.fade-in-container {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    margin: 0;
+  }
+  
+  .fade-in-container:hover {
+    opacity: 0.8;
+  }
+  

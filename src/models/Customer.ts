@@ -1,21 +1,15 @@
-class Customer {
-	public id: string;
-	public name: string;
-	public lastName: string;
-	public email: string;
-	public phone: string;
+export class Customer {
+	id: string;
+	name: string;
+	lastname: string;
+	email: string;
+	phone: string;
 
-	constructor(
-		id: string,
-		name: string,
-		lastName: string,
-		email: string,
-		phone: string
-	) {
-		this.id = id;
-		this.name = name;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
+	constructor(data: any) {
+		this.id = data._id;
+		this.name = data.name;
+		this.lastname = data.lastname;
+		this.email = data.email;
+		this.phone = data.phone;
 	}
 }

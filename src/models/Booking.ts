@@ -1,18 +1,32 @@
-class Booking {
-	public id: string;
-	public date: string;
-	public time: string;
-	public numberOfGuests: number;
-	public customer?: Customer;
+import { Customer } from "./Customer";
 
-	constructor(id: string, date: string, time: string, numberOfGuests: number) {
-		this.id = id;
-		this.date = date;
-		this.time = time;
-		this.numberOfGuests = numberOfGuests;
+export class Booking {
+	_id: string;
+	restaurantId: string;
+	date: string;
+	time: string;
+	numberOfGuests: number;
+	customerId: string;
+	customer: Customer | null | undefined;
+
+	constructor(data: any) {
+		this._id = data._id;
+		this.restaurantId = data.restaurantId;
+		this.date = data.date;
+		this.time = data.time;
+		this.numberOfGuests = data.numberOfGuests;
+		this.customerId = data.customerId;
+		this.customer = data.customer ?? null;
 	}
 
-	setCustomer(customer: Customer) {
-		this.customer = customer;
+	updateField(field: any, value: any): Booking {
+		return new Booking({
+			...this,
+			[field]: value,
+			customer: {
+				...this.customer,
+				[field]: value,
+			},
+		});
 	}
 }

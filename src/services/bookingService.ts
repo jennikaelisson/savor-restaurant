@@ -9,6 +9,12 @@ export const getRestaurantDataService = async () => {
 	return response.data;
 };
 
+export const getCustomerDataService = async (customerID: string) => {
+	const response = await get(API_BASE_URL + "/customer/" + customerID);
+
+	return response.data;
+};
+
 export const getBookingsService = async () => {
 	const response = await get(
 		API_BASE_URL + "/booking/restaurant/" + restaurantID
@@ -23,6 +29,7 @@ export const createBookingService = async (data: any) => {
 };
 
 export const updateBookingService = async (bookingID: string, data: any) => {
+	data.id = bookingID;
 	data.restaurantId = restaurantID;
 	const response = await put(
 		API_BASE_URL + "/booking/update/" + bookingID,

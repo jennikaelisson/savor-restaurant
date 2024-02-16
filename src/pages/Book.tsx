@@ -65,16 +65,10 @@ const Book = () => {
 	};
 	const createNewBooking = async () => {
 		const bookingData = {
-			restaurantId: "65cc7dddf65c4399fb07d036",
 			date: formatDate(selectedDate),
 			time: selectedTime,
 			numberOfGuests: selectedGuests,
-			customer: {
-				name: "testaa",
-				lastname: "testaa",
-				email: "someone@somedomain.com",
-				phone: "070-1112233",
-			},
+			customer: customer,
 		};
 		await createBookingService(bookingData);
 		setBookingConfirmed(true);

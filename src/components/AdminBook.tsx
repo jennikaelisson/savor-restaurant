@@ -109,7 +109,11 @@ const AdminBook = () => {
                 <p>Date: {booking.date}</p>
                 <p>Time: {booking.time}</p>
                 <p>Number of Guests: {booking.numberOfGuests}</p>
-                <button>Edit</button><button>Delete</button>
+                <button type="button" className="btn btn-outline-primary">
+				Edit
+			</button><button type="button" className="btn btn-outline-primary">
+				Delete
+			</button>
               </div>
             ))}
           </>

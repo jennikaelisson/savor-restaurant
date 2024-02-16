@@ -1,8 +1,10 @@
-
 import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { deleteBookingService, getBookingsService } from "../services/bookingService";
+import {
+  deleteBookingService,
+  getBookingsService,
+} from "../services/bookingService";
 
 const AdminBook = () => {
   const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
@@ -11,7 +13,6 @@ const AdminBook = () => {
   const fetchData = async () => {
     try {
       setRestaurantBookings(await getBookingsService());
-
     } catch (error) {
       console.error("Error:", error);
     }
@@ -21,30 +22,31 @@ const AdminBook = () => {
     fetchData();
   }, []);
 
-  // Filter bookings for the selected date
-  const filteredBookings = restaurantBookings?.filter((booking: any) => {
-    const selectedDateLocal = new Date(selectedDate);
-    const bookingDateLocal = new Date(booking.date);
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2); 
+    return `${year}-${month}-${day}`;
+};
 
-    // Adjust to the local time zone offset
-    selectedDateLocal.setMinutes(
-      selectedDateLocal.getMinutes() - selectedDateLocal.getTimezoneOffset()
-    );
-    bookingDateLocal.setMinutes(
-      bookingDateLocal.getMinutes() - bookingDateLocal.getTimezoneOffset()
-    );
+const filteredBookings = restaurantBookings?.filter((booking: any) => {
+  const selectedDateLocal = new Date(selectedDate);
+  const bookingDateLocal = new Date(booking.date);
 
-    return (
-      selectedDateLocal.toISOString().split("T")[0] ===
-      bookingDateLocal.toISOString().split("T")[0]
-    );
-  });
+  // Adjust to the local time zone offset
+  selectedDateLocal.setMinutes(
+    selectedDateLocal.getMinutes() - selectedDateLocal.getTimezoneOffset()
+  );
+  bookingDateLocal.setMinutes(
+    bookingDateLocal.getMinutes() - bookingDateLocal.getTimezoneOffset()
+  );
+
+  return formatDate(selectedDateLocal) === formatDate(bookingDateLocal);
+});
 
   const handleDateChange = (date: Date | Date[]) => {
     setSelectedDate(date);
   };
-
-
 
   return (
     <>
@@ -70,10 +72,17 @@ const AdminBook = () => {
                 <p>Time: {booking.time}</p>
                 <p>Number of Guests: {booking.numberOfGuests}</p>
                 <button type="button" className="btn btn-warning">
-				Edit
-			</button><button type="button" className="btn btn-danger" onClick={() => {deleteBookingService(booking._id)}}>
-				Delete
-			</button>
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    deleteBookingService(booking._id);
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             ))}
           </>

@@ -1,29 +1,8 @@
-// import Calendar from "react-calendar";
-// import "react-calendar/dist/Calendar.css";
-// import { useState, useEffect } from "react";
-
-// type DatePiece = Date | null;
-// type DateValue = DatePiece | [DatePiece, DatePiece];
-
-// const AdminBook = () => {
-//     const [selectedDate, changeDate] = useState<DateValue>(new Date());
-
-//     useEffect(() => {
-// console.log(selectedDate);
-//         // Placera logik här
-//     }, [selectedDate]);
-
-//     return (
-//         <Calendar onChange={changeDate} value={selectedDate} />
-//     );
-// };
-
-// export default AdminBook;
-
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { getBookingsService } from "../services/bookingService";
 
 const AdminBook = () => {
   const restaurantID = "65cc7dddf65c4399fb07d036";
@@ -32,27 +11,8 @@ const AdminBook = () => {
 
   const fetchData = async (endpoint: string) => {
     try {
-      const response = await axios.get(
-        `https://school-restaurant-api.azurewebsites.net/${endpoint}/${restaurantID}`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-          },
-        }
-      );
+      setRestaurantBookings(await getBookingsService());
 
-      if (response.status === 200) {
-        const data = response.data;
-
-        switch (endpoint) {
-          case "booking/restaurant":
-            setRestaurantBookings(data);
-            break;
-        }
-      } else {
-        console.error("Error:", response.statusText);
-      }
     } catch (error) {
       console.error("Error:", error);
     }

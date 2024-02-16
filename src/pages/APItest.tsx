@@ -85,9 +85,16 @@ const APItest = () => {
 						{restaurantBookings.map((booking: any) => (
 							<div key={booking._id} className="bg-warning my-2">
 								<p>ID: {booking._id}</p>
-								<p>Date: {booking.date}</p>
-								<p>Time: {booking.time}</p>
-								<p>Number of Guests: {booking.numberOfGuests}</p>
+								<p>
+									Date: <input type="text" value={booking.date} />
+								</p>
+								<p>
+									Time: <input type="text" value={booking.time} />
+								</p>
+								<p>
+									Number of Guests:{" "}
+									<input type="number" value={booking.numberOfGuests} />
+								</p>
 								<div>
 									<button
 										className="btn btn-danger"

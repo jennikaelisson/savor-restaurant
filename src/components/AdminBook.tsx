@@ -66,7 +66,7 @@ const filteredBookings = restaurantBookings?.filter((booking: any) => {
                 : ""}
             </h2>
             {filteredBookings.map((booking: any) => (
-              <div key={booking._id} className="border">
+              <div key={booking._id} className="border m-1">
                 {/* <p>ID: {booking._id}</p> */}
                 <p>Date: {booking.date}</p>
                 <p>Time: {booking.time}</p>

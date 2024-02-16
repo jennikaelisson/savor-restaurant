@@ -8,17 +8,20 @@ import {
 import { useState, useEffect } from "react";
 
 const APItest = () => {
-	const [bookings, setBookings] = useState<any>(null);
+	const [bookings, setBookings] = useState<any[]>([]);
 	const [customers, setCustomers] = useState<{
 		[key: string]: any;
 	}>({});
 
-	const [updatedValues, setUpdatedValues] = useState<{
-		[key: string]: any;
-	}>({});
-
 	const fetchData = async () => {
-		setBookings(await getBookingsService());
+		const bookingsFetch = await getBookingsService();
+
+		setBookings(bookingsFetch);
+
+		// Fetch customer data for each booking
+		bookingsFetch?.forEach((booking: any) => {
+			fetchCustomerData(booking.customerId);
+		});
 	};
 
 	const fetchCustomerData = async (customerId: string) => {
@@ -32,11 +35,11 @@ const APItest = () => {
 	};
 
 	const updateBooking = async (bookingID: string) => {
-		await updateBookingService(bookingID, updatedValues[bookingID]);
+		await updateBookingService(bookingID, bookings[bookingID]);
 	};
 
 	const updateCustomer = async (customerID: string) => {
-		await updateCustomerService(customerID, updatedValues[customerID]);
+		await updateCustomerService(customerID, customers[customerID]);
 	};
 
 	const deleteBooking = async (bookingID: string) => {
@@ -48,32 +51,36 @@ const APItest = () => {
 		fetchData();
 	}, []);
 
+	/*
 	useEffect(() => {
-		const initialUpdatedValues: { [key: string]: any } = {};
 		bookings?.forEach((booking: any) => {
-			initialUpdatedValues[booking._id] = {
-				date: booking.date,
-				time: booking.time,
-				numberOfGuests: booking.numberOfGuests,
-				customerId: booking.customerId,
-			};
 			fetchCustomerData(booking.customerId);
 		});
-		setUpdatedValues(initialUpdatedValues);
-	}, [bookings]);
+	}, [bookings]);*/
 
-	const handleUpdateInputChange = (
-		bookingID: string,
+	const handleInputChange = (
+		entityID: string,
+		entityType: string,
 		field: string,
 		value: any
 	) => {
-		setUpdatedValues((prevValues) => ({
-			...prevValues,
-			[bookingID]: {
-				...prevValues[bookingID],
-				[field]: value,
-			},
-		}));
+		if (entityType === "booking") {
+			setBookings((prevValues) => ({
+				...prevValues,
+				[entityID]: {
+					...prevValues[entityID],
+					[field]: value,
+				},
+			}));
+		} else if (entityType === "customer") {
+			setCustomers((prevValues) => ({
+				...prevValues,
+				[entityID]: {
+					...prevValues[entityID],
+					[field]: value,
+				},
+			}));
+		}
 	};
 
 	return (
@@ -89,28 +96,39 @@ const APItest = () => {
 								Date:
 								<input
 									type="text"
-									value={updatedValues[booking._id]?.date || ""}
+									value={booking.date}
 									onChange={(e) =>
-										handleUpdateInputChange(booking._id, "date", e.target.value)
+										handleInputChange(
+											booking._id,
+											"booking",
+											"date",
+											e.target.value
+										)
 									}
 								/>
 								<br />
 								Time:
 								<input
 									type="text"
-									value={updatedValues[booking._id]?.time || ""}
+									value={booking.time}
 									onChange={(e) =>
-										handleUpdateInputChange(booking._id, "time", e.target.value)
+										handleInputChange(
+											booking._id,
+											"booking",
+											"time",
+											e.target.value
+										)
 									}
 								/>
 								<br />
 								Number of Guests:
 								<input
 									type="number"
-									value={updatedValues[booking._id]?.numberOfGuests || ""}
+									value={booking.numberOfGuests}
 									onChange={(e) =>
-										handleUpdateInputChange(
+										handleInputChange(
 											booking._id,
+											"booking",
 											"numberOfGuests",
 											parseInt(e.target.value, 10)
 										)
@@ -125,10 +143,11 @@ const APItest = () => {
 										<input
 											type="text"
 											readOnly
-											value={updatedValues[booking._id]?.customerId || ""}
+											value={booking.customerId}
 											onChange={(e) =>
-												handleUpdateInputChange(
+												handleInputChange(
 													booking.customerId,
+													"booking",
 													"customerId",
 													e.target.value
 												)
@@ -136,12 +155,59 @@ const APItest = () => {
 										/>
 									</p>
 									<hr />
-									<p>
-										Name: {customers[booking.customerId]?.name || ""}{" "}
-										{customers[booking.customerId]?.lastname || ""}
-									</p>
-									<p>Email: {customers[booking.customerId]?.email || ""}</p>
-									<p>Phone: {customers[booking.customerId]?.phone || ""}</p>
+									Name:
+									<input
+										type="text"
+										value={customers[booking.customerId]?.name}
+										onChange={(e) =>
+											handleInputChange(
+												booking.customerId,
+												"customer",
+												"name",
+												e.target.value
+											)
+										}
+									/>
+									<input
+										type="text"
+										value={customers[booking.customerId]?.lastname}
+										onChange={(e) =>
+											handleInputChange(
+												booking.customerId,
+												"customer",
+												"lastname",
+												e.target.value
+											)
+										}
+									/>
+									<br />
+									Email:
+									<input
+										type="text"
+										value={customers[booking.customerId]?.email}
+										onChange={(e) =>
+											handleInputChange(
+												booking.customerId,
+												"customer",
+												"email",
+												e.target.value
+											)
+										}
+									/>
+									<br />
+									Phone:
+									<input
+										type="text"
+										value={customers[booking.customerId]?.phone}
+										onChange={(e) =>
+											handleInputChange(
+												booking.customerId,
+												"customer",
+												"phone",
+												e.target.value
+											)
+										}
+									/>
 								</div>
 								<div>
 									<button

@@ -1,15 +1,14 @@
-import axios from "axios";
+
 import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { getBookingsService } from "../services/bookingService";
+import { deleteBookingService, getBookingsService } from "../services/bookingService";
 
 const AdminBook = () => {
-  const restaurantID = "65cc7dddf65c4399fb07d036";
   const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
 
-  const fetchData = async (endpoint: string) => {
+  const fetchData = async () => {
     try {
       setRestaurantBookings(await getBookingsService());
 
@@ -19,8 +18,7 @@ const AdminBook = () => {
   };
 
   useEffect(() => {
-    fetchData("restaurant");
-    fetchData("booking/restaurant");
+    fetchData();
   }, []);
 
   // Filter bookings for the selected date
@@ -45,6 +43,8 @@ const AdminBook = () => {
   const handleDateChange = (date: Date | Date[]) => {
     setSelectedDate(date);
   };
+
+
 
   return (
     <>
@@ -71,7 +71,7 @@ const AdminBook = () => {
                 <p>Number of Guests: {booking.numberOfGuests}</p>
                 <button type="button" className="btn btn-warning">
 				Edit
-			</button><button type="button" className="btn btn-danger">
+			</button><button type="button" className="btn btn-danger" onClick={() => {deleteBookingService(booking._id)}}>
 				Delete
 			</button>
               </div>

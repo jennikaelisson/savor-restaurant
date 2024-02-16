@@ -109,18 +109,15 @@ const AdminBook = () => {
                 <p>Date: {booking.date}</p>
                 <p>Time: {booking.time}</p>
                 <p>Number of Guests: {booking.numberOfGuests}</p>
-                <button type="button" className="btn btn-outline-primary">
+                <button type="button" className="btn btn-warning">
 				Edit
-			</button><button type="button" className="btn btn-outline-primary">
+			</button><button type="button" className="btn btn-danger">
 				Delete
 			</button>
               </div>
             ))}
           </>
         ) : (
-          // <div className="spinner-border text-primary" role="status">
-          //   <span className="visually-hidden">Loading...</span>
-          // </div>
           <h4 className="text-danger">No bookings available on this date</h4>
         )}
       </div>

@@ -104,18 +104,20 @@ const AdminBook = () => {
                 : ""}
             </h2>
             {filteredBookings.map((booking: any) => (
-              <div key={booking._id}>
+              <div key={booking._id} className="border">
                 {/* <p>ID: {booking._id}</p> */}
                 <p>Date: {booking.date}</p>
                 <p>Time: {booking.time}</p>
                 <p>Number of Guests: {booking.numberOfGuests}</p>
+                <button>Edit</button><button>Delete</button>
               </div>
             ))}
           </>
         ) : (
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
+          // <div className="spinner-border text-primary" role="status">
+          //   <span className="visually-hidden">Loading...</span>
+          // </div>
+          <h4 className="text-danger">No bookings available on this date</h4>
         )}
       </div>
     </>

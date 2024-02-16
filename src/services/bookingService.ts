@@ -38,6 +38,15 @@ export const updateBookingService = async (bookingID: string, data: any) => {
 	return response.data;
 };
 
+export const updateCustomerService = async (customerID: string, data: any) => {
+	data.id = customerID;
+	const response = await put(
+		API_BASE_URL + "/customer/update/" + customerID,
+		data
+	);
+	return response.data;
+};
+
 export const deleteBookingService = async (bookingID: string) => {
 	const response = await del(API_BASE_URL + "/booking/delete/" + bookingID);
 	return response.data;

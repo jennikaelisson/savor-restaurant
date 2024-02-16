@@ -13,10 +13,7 @@ const APItest = () => {
 		[key: string]: any;
 	}>({});
 
-	const [updatedBookingValues, setUpdatedBookingValues] = useState<{
-		[key: string]: any;
-	}>({});
-	const [updatedCustomerValues, setUpdatedCustomerValues] = useState<{
+	const [updatedValues, setUpdatedValues] = useState<{
 		[key: string]: any;
 	}>({});
 
@@ -35,15 +32,11 @@ const APItest = () => {
 	};
 
 	const updateBooking = async (bookingID: string) => {
-		console.log("Update booking");
-		console.log(updatedBookingValues[bookingID]);
-		await updateBookingService(bookingID, updatedBookingValues[bookingID]);
+		await updateBookingService(bookingID, updatedValues[bookingID]);
 	};
 
 	const updateCustomer = async (customerID: string) => {
-		console.log("Update customer");
-		console.log(updatedBookingValues[customerID]);
-		await updateCustomerService(customerID, updatedCustomerValues[customerID]);
+		await updateCustomerService(customerID, updatedValues[customerID]);
 	};
 
 	const deleteBooking = async (bookingID: string) => {
@@ -66,15 +59,15 @@ const APItest = () => {
 			};
 			fetchCustomerData(booking.customerId);
 		});
-		setUpdatedBookingValues(initialUpdatedValues);
+		setUpdatedValues(initialUpdatedValues);
 	}, [bookings]);
 
-	const handleBookingUpdateInputChange = (
+	const handleUpdateInputChange = (
 		bookingID: string,
 		field: string,
 		value: any
 	) => {
-		setUpdatedBookingValues((prevValues) => ({
+		setUpdatedValues((prevValues) => ({
 			...prevValues,
 			[bookingID]: {
 				...prevValues[bookingID],
@@ -96,37 +89,27 @@ const APItest = () => {
 								Date:
 								<input
 									type="text"
-									value={updatedBookingValues[booking._id]?.date || ""}
+									value={updatedValues[booking._id]?.date || ""}
 									onChange={(e) =>
-										handleBookingUpdateInputChange(
-											booking._id,
-											"date",
-											e.target.value
-										)
+										handleUpdateInputChange(booking._id, "date", e.target.value)
 									}
 								/>
 								<br />
 								Time:
 								<input
 									type="text"
-									value={updatedBookingValues[booking._id]?.time || ""}
+									value={updatedValues[booking._id]?.time || ""}
 									onChange={(e) =>
-										handleBookingUpdateInputChange(
-											booking._id,
-											"time",
-											e.target.value
-										)
+										handleUpdateInputChange(booking._id, "time", e.target.value)
 									}
 								/>
 								<br />
 								Number of Guests:
 								<input
 									type="number"
-									value={
-										updatedBookingValues[booking._id]?.numberOfGuests || ""
-									}
+									value={updatedValues[booking._id]?.numberOfGuests || ""}
 									onChange={(e) =>
-										handleBookingUpdateInputChange(
+										handleUpdateInputChange(
 											booking._id,
 											"numberOfGuests",
 											parseInt(e.target.value, 10)
@@ -142,11 +125,9 @@ const APItest = () => {
 										<input
 											type="text"
 											readOnly
-											value={
-												updatedBookingValues[booking._id]?.customerId || ""
-											}
+											value={updatedValues[booking._id]?.customerId || ""}
 											onChange={(e) =>
-												handleBookingUpdateInputChange(
+												handleUpdateInputChange(
 													booking.customerId,
 													"customerId",
 													e.target.value

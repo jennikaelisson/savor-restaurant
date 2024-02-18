@@ -1,13 +1,67 @@
 @import "styles/variables.css";
 body {
-	font: var(--Alata);
+	font-family: var(--Alata);
 }
 
-.h1,
-.h2,
+
+h1{ 
+	font-family: var(--Playfair-Display);
+}
+.h1,.h2,
+h2,
 h3,
 h4,
 h5,
 h6 {
-	/* SET HEADING FONTS HERE */
+	font-family: var(--Alata);
 }
+
+.thin-font {
+	font-weight: 100; 
+  }
+
+.list-style {
+	list-style: none;
+	padding: 0;
+}
+
+.dark-background {
+	background-color: var(--footer-bg);
+	color: var(--white);
+}
+
+.footer-left {
+	background-color: var(--light-green);
+}
+
+.footer-right {
+	background-color: var(--light-blue);
+}
+
+.button {
+	border: 2px solid var(--black);
+	border-radius: 0;
+	padding: 0.5rem 1rem;
+}
+
+.name-style {
+	font-size: 5rem;
+}
+
+a {
+	color: var(--black);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--dark-gray); 
+
+  }
+
+.admin-link a {
+	color: var(--beige);
+}
+
+.admin-link a:hover {
+	color: var(--dark-gray);
+}
+

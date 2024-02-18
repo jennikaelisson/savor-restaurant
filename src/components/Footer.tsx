@@ -49,11 +49,11 @@ const Footer = () => {
                   <div className="p-1">
                     <h3>LOCATION</h3>
                     <p>
-                      Upper Level, Elizabeth Dr,
+                      Drottninggatan 17
                       <br />
-                      The Rocks, Sydney 2177
+                      111 51 Stockholm
                       <br />
-                      phone: 02 9232 9480
+                      phone: 079 123 4567
                     </p>
                   </div>
                   <div className="p-1 thin-font">
@@ -83,7 +83,7 @@ const Footer = () => {
                     </Link>
                   </div>
                   <div className="pt-5">
-                    <p>Tel: 02 9232 9480</p>
+                    <p>Tel: 079 123 4567</p>
                   </div>
                 </div>
               </div>

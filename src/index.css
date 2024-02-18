@@ -1,15 +1,36 @@
 @import "styles/variables.css";
 body {
-	font-family: var(--Open-Sans);
+	font-family: var(--Alata);
 }
 
 .h1,
-h1,
+h1{ 
+	font-family: var(--Playfair-Display);
+}
 .h2,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	font-family: var(--Playfair-Display);
+	font-family: var(--Alata);
+}
+
+.list-style {
+	list-style: none;
+	padding: 0;
+}
+
+.dark-background {
+	background-color: var(--footer-bg);
+	color: var(--white);
+
+}
+
+.footer-left {
+	background-color: var(--light-green);
+}
+
+.footer-right {
+	background-color: var(--light-blue);
 }

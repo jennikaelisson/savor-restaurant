@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 const Footer = () => {
 	return (
 		<>
-			<footer className="footer mt-auto py-3 bg-light">
-				<div className="container">
+			<footer className="footer mt-auto py-3">
+				<div>
 					<div className="mx-0 row">
-						<div className="col-12 col-md-8 p-0">
+						<div className="col-12 col-md-8 p-0 footer-left">
 							<div className="p-1">
 								<h1>SAVOR</h1>
 							</div>
@@ -14,7 +14,7 @@ const Footer = () => {
 									{/* display these 3 as flex wrap */}
 									<div className="p-1">
 										<h3>Sitemap</h3>
-										<ul>
+										<ul className="list-style">
 											<li>
 												<Link to="#">About</Link>
 											</li>
@@ -72,22 +72,22 @@ const Footer = () => {
 										<h3>Reservations</h3>
 									</div>
 									<div className="p-1">
-										<Link to="/book">Make a reservation!</Link>
+										<Link to="/book">Make a reservation</Link>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div className="col-12 col-md-4 p-0">
+						<div className="col-12 col-md-4 p-0 footer-right">
 							<div className="p-1">
 								<h2>Other branches</h2>
 							</div>
 							<div className="p-1">
-								<ul>
+								<ul className="list-style">
 									<li>
-										<h4>Restaurant 1</h4>
+										<h4>Devour</h4>
 									</li>
 									<li>
-										<h4>Restaurant 2</h4>
+										<h4>Whisk</h4>
 									</li>
 									<li>
 										<h4>Restaurant 3</h4>
@@ -99,13 +99,13 @@ const Footer = () => {
 							</div>
 						</div>
 					</div>
-					<div className="p-1 text-center">
-						<h4>© Savor Restaurant 2024. All rights reserved.</h4>
-					</div>
+					
+				</div><div className="p-3 text-center dark-background">
+						<h4>© SAVOR RESTAURANT 2024. ALL RIGHTS RESERVED.</h4>
 					<span className="text-muted">
 						<Link to="/admin">Adminlogin</Link>
-					</span>
-				</div>
+					</span></div>
+					
 			</footer>
 		</>
 	);

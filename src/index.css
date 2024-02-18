@@ -1,5 +1,6 @@
 @import "styles/variables.css";
 body {
+	background-color: var(--beige);
 	font-family: var(--Alata);
 }
 

@@ -6,8 +6,8 @@ const Layout = () => {
 		<>
 			<Header />
 
-			<main className="flex-shrink-0 mt-5">
-				<div className="container py-4">
+			<main className="flex-shrink-0">
+				<div>
 					<Outlet />
 				</div>
 			</main>

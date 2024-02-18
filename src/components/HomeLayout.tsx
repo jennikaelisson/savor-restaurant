@@ -58,7 +58,7 @@ const HomeLayout = () => {
                     <img src="src/assets/HomeIndoorPic.jpg" className="img-fluid fade-in-container img-scale" alt="HomeMainPic" />
                     <div className="content-container text-center">
                         <h3 className="text-white">Make a reservation</h3>
-                        <a className="btn button" href="/BOOK" role="button">BOOK TABLE</a>
+                        <a className="btn button link-color" href="/BOOK" role="button">BOOK TABLE</a>
                     </div>
                 </div>
             </div>

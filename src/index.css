@@ -3,11 +3,11 @@ body {
 	font-family: var(--Alata);
 }
 
-.h1,
+
 h1{ 
 	font-family: var(--Playfair-Display);
 }
-.h2,
+.h1,.h2,
 h2,
 h3,
 h4,
@@ -33,4 +33,10 @@ h6 {
 
 .footer-right {
 	background-color: var(--light-blue);
+}
+
+.button {
+	border: 2px solid var(--black);
+	border-radius: 0;
+	padding: 0.5rem 1rem;
 }

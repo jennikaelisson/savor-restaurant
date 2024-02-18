@@ -36,20 +36,24 @@ const Footer = () => {
                     </ul>
                   </div>
                   <div className="p-1">
-                    <h3>SOCIAL</h3> 
-					{/* Why wont these icons work? */}
-                    <div><img src="../img/facebook.png" alt="Facebook icon" /> <img src="../img/youtube.png" alt="Youtube icon" /><img src="../img/instagram.png" alt="Instagram icon" /></div>
+                    <h3>SOCIAL</h3>
+                    {/* Why wont these icons work? */}
+                    <div>
+                      <img src="../img/facebook.png" alt="Facebook icon" />{" "}
+                      <img src="../img/youtube.png" alt="Youtube icon" />
+                      <img src="../img/instagram.png" alt="Instagram icon" />
+                    </div>
                   </div>
                 </div>
                 <div className="col-12 col-sm-4">
                   <div className="p-1">
                     <h3>LOCATION</h3>
                     <p>
-                      Upper Level, Overseas Passenger Terminal,
+                      Upper Level, Elizabeth Dr,
                       <br />
-                      The Rocks, Sydney 2000
+                      The Rocks, Sydney 2177
                       <br />
-                      phone: 02 9251 5600
+                      phone: 02 9232 9480
                     </p>
                   </div>
                   <div className="p-1 thin-font">
@@ -57,14 +61,15 @@ const Footer = () => {
                     <p>
                       LUNCH
                       <br />
-                      Saturday and Sunday
+                      Monday to Friday
                       <br />
-                      First come first served 12pm to 1.30pm
+                      No reservation 12pm to 2.30pm
                     </p>
                     <p>
                       DINNER
                       <br />
-                      Thursday to Sunday Reservations from 6pm to 8.45pm
+                      Monday to Sunday <br />
+                      Reservations at 6pm and 9pm
                     </p>
                   </div>
                 </div>
@@ -77,12 +82,14 @@ const Footer = () => {
                       <button className="btn button">MAKE A RESERVATION</button>
                     </Link>
                   </div>
-				  <div className="pt-5"><p>Tel: 097687980323</p></div>
+                  <div className="pt-5">
+                    <p>Tel: 02 9232 9480</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="col-12 col-md-4 p-5 footer-right">
-              <div className="p-1">
+              <div className="p-1 pt-5">
                 <h2 className="p-2">BRANCHES</h2>
               </div>
               <div className="p-1">
@@ -93,10 +100,10 @@ const Footer = () => {
                   <li className="p-2">
                     <h4>WHISK</h4>
                   </li>
-				  <li className="p-2">
+                  <li className="p-2">
                     <h4>OTTO'S</h4>
                   </li>
-				  <li className="p-2">
+                  <li className="p-2">
                     <h4>TASTE</h4>
                   </li>
                   <li className="p-2">

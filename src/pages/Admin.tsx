@@ -29,17 +29,17 @@ const Admin = () => {
 
   return (
     <>
-      <h1>Admin</h1>
+      
       {admin ? (
         <>
           <div className="p-2 bg-light border my-2">
             <div className="col-12">
-              <h1>Admin</h1>
+              <h2>ADMIN</h2>
             </div>
 
             <div className="row p-2">
               <div className="col-12 col-lg-5 col-xl-4">
-                {/* Tab Menu */}
+              
                 <ul className="nav nav-tabs">
                   <li className="nav-item">
                     <button
@@ -59,7 +59,7 @@ const Admin = () => {
                   </li>
                 </ul>
                 
-                {/* Render Tab Content */}
+              
                 {renderTabContent()}
               </div>
             </div>

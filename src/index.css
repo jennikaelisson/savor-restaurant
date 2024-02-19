@@ -86,6 +86,25 @@ a:hover {
 	object-fit: cover;
 }
 
+.img-max {
+	max-width: 100%;
+}
+
+.input-border {
+	border: none;
+	border-bottom: 1px solid var(--black); 
+	outline: none; 
+}
+
+.social-icons img {
+	max-width: 25px;
+	max-height: 25px; 
+	object-fit: contain; }
+
+.light-background {
+	background-color: var(--light-green);
+}
+
 @media screen and (min-width: 590px) {
 	.name-style {
 		font-size: 2.5rem;

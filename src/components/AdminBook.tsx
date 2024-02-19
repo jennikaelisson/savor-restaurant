@@ -3,7 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import {
   deleteBookingService,
-  getBookingsService,
+  getCustomerDataService,
 } from "../services/bookingService";
 
 const AdminBook = () => {
@@ -12,37 +12,41 @@ const AdminBook = () => {
 
   const fetchData = async () => {
     try {
-      setRestaurantBookings(await getBookingsService());
+      setRestaurantBookings(await getCustomerDataService());
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    try {
+      fetchData();
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
   }, []);
 
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2); 
+    const day = ("0" + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
-};
+  };
 
-const filteredBookings = restaurantBookings?.filter((booking: any) => {
-  const selectedDateLocal = new Date(selectedDate);
-  const bookingDateLocal = new Date(booking.date);
+  const filteredBookings = restaurantBookings?.filter((booking: any) => {
+    const selectedDateLocal = new Date(selectedDate);
+    const bookingDateLocal = new Date(booking.date);
 
-  // Adjust to the local time zone offset
-  selectedDateLocal.setMinutes(
-    selectedDateLocal.getMinutes() - selectedDateLocal.getTimezoneOffset()
-  );
-  bookingDateLocal.setMinutes(
-    bookingDateLocal.getMinutes() - bookingDateLocal.getTimezoneOffset()
-  );
+    // Adjust to the local time zone offset
+    selectedDateLocal.setMinutes(
+      selectedDateLocal.getMinutes() - selectedDateLocal.getTimezoneOffset()
+    );
+    bookingDateLocal.setMinutes(
+      bookingDateLocal.getMinutes() - bookingDateLocal.getTimezoneOffset()
+    );
 
-  return formatDate(selectedDateLocal) === formatDate(bookingDateLocal);
-});
+    return formatDate(selectedDateLocal) === formatDate(bookingDateLocal);
+  });
 
   const handleDateChange = (date: Date | Date[]) => {
     setSelectedDate(date);

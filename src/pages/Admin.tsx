@@ -7,11 +7,24 @@ const Admin = () => {
   const [admin, setAdmin] = useState(
     () => localStorage.getItem("admin") !== null
   );
+  const [activeTab, setActiveTab] = useState("adminBook");
+
   const handleAdminStatus = (adminStatus: boolean) => {
     adminStatus
       ? localStorage.setItem("admin", "true")
       : localStorage.removeItem("admin");
     setAdmin(adminStatus);
+  };
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "adminBook":
+        return <AdminBook />;
+      case "adminCreateBooking":
+        return <AdminCreateBooking />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -26,15 +39,28 @@ const Admin = () => {
 
             <div className="row p-2">
               <div className="col-12 col-lg-5 col-xl-4">
-                <AdminBook />
-              </div>
-            </div>
-            <div className="p-2">
-              <div>
-                <h3>Add booking</h3>
-              </div>
-              <div>
-                <AdminCreateBooking />
+                {/* Tab Menu */}
+                <ul className="nav nav-tabs">
+                  <li className="nav-item">
+                    <button
+                      className={`nav-link ${activeTab === "adminBook" ? "active" : ""}`}
+                      onClick={() => setActiveTab("adminBook")}
+                    >
+                      Admin Book
+                    </button>
+                  </li>
+                  <li className="nav-item">
+                    <button
+                      className={`nav-link ${activeTab === "adminCreateBooking" ? "active" : ""}`}
+                      onClick={() => setActiveTab("adminCreateBooking")}
+                    >
+                      Add Booking
+                    </button>
+                  </li>
+                </ul>
+                
+                {/* Render Tab Content */}
+                {renderTabContent()}
               </div>
             </div>
           </div>

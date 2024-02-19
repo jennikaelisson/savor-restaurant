@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import {
   deleteBookingService,
   getBookingsService,
+
 } from "../services/bookingService";
 
 const AdminBook = () => {
@@ -19,7 +20,11 @@ const AdminBook = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    try {
+      fetchData();
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }  
   }, []);
 
   const formatDate = (date: Date) => {

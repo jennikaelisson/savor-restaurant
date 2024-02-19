@@ -75,7 +75,7 @@ const Header = () => {
 						</div>
 						<Link
 							to="/book"
-							className="btn btn-outline-secondary d-none d-md-inline"
+							className="btn button link-color d-none d-md-inline"
 						>
 							MAKE A RESERVATION
 						</Link>

@@ -42,11 +42,21 @@ h6 {
 .button {
 	border: 2px solid var(--black);
 	border-radius: 0;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 3rem;
+	
+}
+
+.button:hover {
+	background-color: var(--black);
+	color: var(--beige);
 }
 
 .name-style {
-	font-size: 5rem;
+	font-size: 2rem;
+}
+
+.name-style-xl {
+	font-size: 3rem;
 }
 
 a {
@@ -66,3 +76,42 @@ a:hover {
 	color: var(--dark-gray);
 }
 
+.link-color {
+	color: var(--white);
+}
+
+.img-scale {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+@media screen and (min-width: 590px) {
+	.name-style {
+		font-size: 2.5rem;
+	}
+	
+	.name-style-xl {
+		font-size: 4rem;
+	}
+}
+
+@media screen and (min-width: 760px) {
+	.name-style {
+		font-size: 3rem;
+	}
+	
+	.name-style-xl {
+		font-size: 6rem;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.name-style {
+		font-size: 5rem;
+	}
+	
+	.name-style-xl {
+		font-size: 8rem;
+	}
+}

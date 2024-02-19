@@ -3,51 +3,74 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import {
   deleteBookingService,
-  getBookingsService,
-
+  getBookingsAndCustomerService,
+  updateBookingAndCustomerService,
 } from "../services/bookingService";
+import { Booking } from "../models/Booking";
 
 const AdminBook = () => {
-  const [restaurantBookings, setRestaurantBookings] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
 
-  const fetchData = async () => {
-    try {
-      setRestaurantBookings(await getBookingsService());
-    } catch (error) {
-      console.error("Error:", error);
+  const getBookings = async () => {
+    setBookings(await getBookingsAndCustomerService());
+  };
+
+  const updateBooking = async (index: number) => {
+    if (editingIndex === null) {
+      setEditingIndex(index);
+    } else {
+      await updateBookingAndCustomerService(bookings[index]);
+      setEditingIndex(null);
     }
+  };
+
+  const deleteBooking = async (bookingID: string) => {
+    await deleteBookingService(bookingID);
+    getBookings();
   };
 
   useEffect(() => {
     try {
-      fetchData();
+      getBookings();
     } catch (error) {
       console.error("Error fetching data: ", error);
-    }  
+    }
   }, []);
+
+  const handleInputChange = (bookingID: string, field: string, value: any) => {
+    setBookings((prevValues) =>
+      prevValues.map((booking) =>
+        booking._id === bookingID ? booking.updateField(field, value) : booking
+      )
+    );
+  };
 
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2); 
+    const day = ("0" + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
-};
+  };
 
-const filteredBookings = restaurantBookings?.filter((booking: any) => {
-  const selectedDateLocal = new Date(selectedDate);
-  const bookingDateLocal = new Date(booking.date);
-
-  // Adjust to the local time zone offset
-  selectedDateLocal.setMinutes(
-    selectedDateLocal.getMinutes() - selectedDateLocal.getTimezoneOffset()
-  );
-  bookingDateLocal.setMinutes(
-    bookingDateLocal.getMinutes() - bookingDateLocal.getTimezoneOffset()
-  );
-
-  return formatDate(selectedDateLocal) === formatDate(bookingDateLocal);
-});
+  const filteredBookings = bookings.filter((booking: Booking) => {
+    const selectedDates = Array.isArray(selectedDate) ? selectedDate : [selectedDate];
+    
+    const selectedDateLocal = selectedDates.map(date => {
+      const dateObject = new Date(date);
+      dateObject.setMinutes(dateObject.getMinutes() - dateObject.getTimezoneOffset());
+      return dateObject;
+    });
+  
+    const bookingDateLocal = new Date(booking.date);
+    bookingDateLocal.setMinutes(
+      bookingDateLocal.getMinutes() - bookingDateLocal.getTimezoneOffset()
+    );
+  
+    return selectedDateLocal.some(date => formatDate(date) === formatDate(bookingDateLocal));
+  });
+  
 
   const handleDateChange = (date: Date | Date[]) => {
     setSelectedDate(date);
@@ -70,20 +93,139 @@ const filteredBookings = restaurantBookings?.filter((booking: any) => {
                 ? selectedDate.toLocaleDateString()
                 : ""}
             </h2>
-            {filteredBookings.map((booking: any) => (
+            {filteredBookings.map((booking, index) => (
               <div key={booking._id} className="border m-1">
-                {/* <p>ID: {booking._id}</p> */}
-                <p>Date: {booking.date}</p>
-                <p>Time: {booking.time}</p>
-                <p>Number of Guests: {booking.numberOfGuests}</p>
-                <button type="button" className="btn btn-warning">
-                  Edit
+               
+                <p>ID: {booking._id}</p>
+								Date:
+								<input
+									type="text"
+									value={booking.date}
+									onChange={(e) =>
+										handleInputChange(
+											booking._id,
+
+											"date",
+											e.target.value
+										)
+									}
+								/>
+								<br />
+								Time:
+								<input
+									type="text"
+									value={booking.time}
+									onChange={(e) =>
+										handleInputChange(
+											booking._id,
+
+											"time",
+											e.target.value
+										)
+									}
+								/>
+								<br />
+								Number of Guests:
+								<input
+									type="number"
+									value={booking.numberOfGuests}
+									onChange={(e) =>
+										handleInputChange(
+											booking._id,
+
+											"numberOfGuests",
+											parseInt(e.target.value, 10)
+										)
+									}
+									min="1"
+									max="240"
+								/>
+								<br /><div className="bg-secondary p-2 my-2">
+									<p>
+										CustomerID:
+										<input
+											type="text"
+											readOnly
+											value={booking.customerId}
+											onChange={(e) =>
+												handleInputChange(
+													booking._id,
+
+													"customerId",
+													e.target.value
+												)
+											}
+										/>
+									</p>
+									<hr />
+									Name:
+									<input
+										type="text"
+										value={booking.customer?.name || ""}
+										onChange={(e) =>
+											handleInputChange(
+												booking._id,
+
+												"name",
+												e.target.value
+											)
+										}
+									/>
+									<input
+										type="text"
+										value={booking.customer?.lastname || ""}
+										onChange={(e) =>
+											handleInputChange(
+												booking._id,
+
+												"lastname",
+												e.target.value
+											)
+										}
+									/>
+									<br />
+									Email:
+									<input
+										type="text"
+										value={booking.customer?.email || ""}
+										onChange={(e) =>
+											handleInputChange(
+												booking._id,
+
+												"email",
+												e.target.value
+											)
+										}
+									/>
+									<br />
+									Phone:
+									<input
+										type="text"
+										value={booking.customer?.phone || ""}
+										onChange={(e) =>
+											handleInputChange(
+												booking._id,
+
+												"phone",
+												e.target.value
+											)
+										}
+									/>
+								</div>
+
+							
+                <button
+                  type="button"
+                  className={`btn ${editingIndex === index ? "btn-success" : "btn-warning"}`}
+                  onClick={() => updateBooking(index)}
+                >
+                  {editingIndex === index ? "Save" : "Edit"}
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
                   onClick={() => {
-                    deleteBookingService(booking._id);
+                    deleteBooking(booking._id);
                   }}
                 >
                   Delete

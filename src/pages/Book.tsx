@@ -77,9 +77,9 @@ const Book = () => {
   const tablesNeeded = Math.floor((selectedGuests - 1) / 6) + 1;
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
-      <div className="light-background">
-        <p className="h1">BOOKING</p>
+    <div className="row">
+      <div className=" p-5 col-12 col-md-6" style={{ height: '100vh', overflowY: 'auto' }}>
+        <p className="h1 pt-5">BOOKING</p>
         {bookingConfirmed ? (
           <div className="mt-3 alert alert-success" role="alert">
             Booking confirmed! Thank you, {customer.name} {customer.lastname},
@@ -210,7 +210,7 @@ const Book = () => {
           </>
         )}
       </div>
-
+<div className="col-12 col-md-6"><img src="src/img/Table.jpg" alt="A made up table" className="img-scale"/></div>
     </div>
   );
 };

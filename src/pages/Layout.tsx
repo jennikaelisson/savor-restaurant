@@ -5,7 +5,7 @@ const Layout = () => {
 	
 	const location = useLocation();
 
-	const isHome = location.pathname === '/'; // Adjust the path accordingly
+	const isHome = location.pathname === '/' || location.pathname === '/book'; // Adjust the path accordingly
   
 	return (
 	  <>

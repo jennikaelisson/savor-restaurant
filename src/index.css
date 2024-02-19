@@ -51,6 +51,10 @@ h6 {
 	color: var(--beige);
 }
 
+.button:active {
+	background-color: var(--light-green);
+  }
+
 .name-style {
 	font-size: 2rem;
 }

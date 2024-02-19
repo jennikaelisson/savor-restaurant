@@ -78,7 +78,10 @@ const Book = () => {
 
   return (
     <div className="row">
-      <div className=" p-5 col-12 col-md-6" style={{ height: '100vh', overflowY: 'auto' }}>
+      <div
+        className=" p-5 col-12 col-md-6"
+        style={{ height: "100vh", overflowY: "auto" }}
+      >
         <p className="h1 pt-5">BOOKING</p>
         {bookingConfirmed ? (
           <div className="mt-3 alert alert-success" role="alert">
@@ -94,19 +97,19 @@ const Book = () => {
           </div>
         ) : (
           <>
-            <p className="h2">Number of guests</p>
-            <div className=" border p-2">
+           <div> <p className="h4">Number of guests</p>
+            <div className=" p-2 pb-4">
               <input
                 type="number"
                 min="1"
                 max="90"
-                className="input-border"
+                className="form-control input-border"
                 value={selectedGuests}
                 onChange={(e) => changeGuests(parseInt(e.target.value))}
-              />
+              /></div>
             </div>
-            <p className="h2">Select a date</p>
-            <div className=" border p-2">
+            <p className="h4">Select a date</p>
+            <div className="p-2 pb-4">
               <Calendar
                 onChange={changeDate}
                 value={selectedDate}
@@ -117,8 +120,8 @@ const Book = () => {
               />
             </div>
 
-            <p className="h2">Select a time</p>
-            <div className="border p-2">
+            <p className="h4">Select a time</p>
+            <div className="p-2 pb-4">
               <input
                 type="radio"
                 className="btn-check"
@@ -131,7 +134,7 @@ const Book = () => {
                 className={`btn ${
                   freeTables["18:00"] < tablesNeeded
                     ? "btn-danger"
-                    : "btn-outline-success"
+                    : "btn-outline-dark button"
                 } mx-2`}
                 htmlFor="time18"
               >
@@ -150,54 +153,83 @@ const Book = () => {
                 className={`btn ${
                   freeTables["21:00"] < tablesNeeded
                     ? "btn-danger"
-                    : "btn-outline-success"
+                    : "btn-outline-dark button"
                 } mx-2`}
                 htmlFor="time21"
               >
                 21:00 ({freeTables["21:00"]} available)
               </label>
             </div>
-            <p className="h2">Your information</p>
-            <div className="border p-2">
-              <div><label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                className="input-border"
-                value={customer.name}
-                onChange={(e) => handleCustomerChange("name", e.target.value)}
-              /></div>
-<div>
-              <label htmlFor="lastname">Last name:</label>
-              <input
-                type="text"
-                id="lastname"
-                className="input-border"
-                value={customer.lastname}
-                onChange={(e) =>
-                  handleCustomerChange("lastname", e.target.value)
-                }
-              /></div>
+            <p className="h4">Your information</p>
+            <div className="p-2 pr-4">
+              <div className="row mb-3">
+                <label
+                  htmlFor="name"
+                  className="col-12 col-sm-4 col-form-label"
+                >
+                  Name:
+                </label>
+                <div className="col-12 col-sm-8">
+                  <input
+                    type="text"
+                    id="name"
+                    className="form-control input-border"
+                    value={customer.name}
+                    onChange={(e) =>
+                      handleCustomerChange("name", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label
+                  htmlFor="lastname"
+                  className="col-12 col-sm-4 col-form-label"
+                >
+                  Last name:
+                </label>
+                <div className="col-12 col-sm-8">
+                  <input
+                    type="text"
+                    id="lastname"
+                    className="form-control input-border"
+                    value={customer.lastname}
+                    onChange={(e) =>
+                      handleCustomerChange("lastname", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
 
-             <div> <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                className="input-border"
-                value={customer.email}
-                onChange={(e) => handleCustomerChange("email", e.target.value)}
-              /></div>
+              <div className="row mb-3">
+                {" "}
+                <label htmlFor="email" className="col-12 col-sm-4 col-form-label">Email:</label>
+				<div className="col-12 col-sm-8"> <input
+                  type="email"
+                  id="email"
+                  className="form-control input-border"
+                  value={customer.email}
+                  onChange={(e) =>
+                    handleCustomerChange("email", e.target.value)
+                  }
+                /></div>
+              </div>
 
-             <div> <label htmlFor="phone">Phone:</label>
-              <input
-                type="tel"
-                id="phone"
-                className="input-border"
-                value={customer.phone}
-                onChange={(e) => handleCustomerChange("phone", e.target.value)}
-              /></div>
+              <div className="row mb-3">
+                {" "}
+                <label htmlFor="phone" className="col-12 col-sm-4 col-form-label">Phone:</label>
+				<div className="col-12 col-sm-8"> <input
+                  type="tel"
+                  id="phone"
+                  className="form-control input-border"
+                  value={customer.phone}
+                  onChange={(e) =>
+                    handleCustomerChange("phone", e.target.value)
+                  }
+                /></div>
+              </div>
             </div>
-            <p className="h2">Book</p>
+            {/* <p className="h2">Book</p> */}
             <div className="border p-2">
               <button
                 className="btn button"
@@ -210,7 +242,13 @@ const Book = () => {
           </>
         )}
       </div>
-<div className="col-12 col-md-6"><img src="src/img/Table.jpg" alt="A made up table" className="img-scale"/></div>
+      <div className="col-12 col-md-6">
+        <img
+          src="src/img/Table.jpg"
+          alt="A made up table"
+          className="img-fluid fade-in-container img-scale"
+        />
+      </div>
     </div>
   );
 };

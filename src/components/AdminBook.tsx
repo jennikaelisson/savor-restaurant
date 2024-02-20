@@ -106,7 +106,7 @@ const AdminBook = () => {
             <div className="row">
             {filteredBookings.map((booking, index) => (
               <div key={booking._id} className="col-4">
-                <div className="card m-1">
+                <div className="card h-100 d-flex flex-fill">
                   <div className="card-body">
                           
             <h5 className="card-title">Booking ID: {booking._id}</h5>

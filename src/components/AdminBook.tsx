@@ -91,13 +91,13 @@ const AdminBook = () => {
       
       
       <div className="col-12 col-lg-8">
-       <b>Bookings</b>
+       <b>Bookings:</b>
       <div className="border">
         
         {filteredBookings && filteredBookings.length > 0 ? (
           <>
             <h2>
-              Bookings for{" "}
+              {" "}
               {selectedDate instanceof Date
                 ? selectedDate.toLocaleDateString()
                 : ""}
@@ -235,7 +235,7 @@ const AdminBook = () => {
                 <button
                   type="button"
                   className={`btn ${
-                    editingIndex === index ? "btn-success" : "btn-warning"
+                    editingIndex === index ? "custom-btn-save" : "custom-btn-edit"
                   }`}
                   onClick={() => updateBooking(index)}
                 >
@@ -243,7 +243,7 @@ const AdminBook = () => {
                 </button>
                 <button
                   type="button"
-                  className="btn btn-danger"
+                  className="btn btn-danger custom-btn-delete"
                   onClick={() => {
                     deleteBooking(booking._id);
                   }}

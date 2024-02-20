@@ -109,6 +109,34 @@ a:hover {
 	background-color: var(--light-green);
 }
 
+.custom-btn-edit {
+	border: 2px solid var(--black);
+	border-radius: 0;
+	background-color: var(--light-green);
+	color: var(--black);
+	margin-right: 5px;
+  }
+ .custom-btn-edit:hover {
+	background-color: #404241;
+	color: var(--beige);
+	
+ } 
+.custom-btn-save {
+	border-radius: 0;
+	background-color: #404241;
+	color: var(--beige);
+	margin-right: 5px;
+  }
+.custom-btn-delete {
+	border: 2px solid var(--black);
+	border-radius: 0;
+	background-color: var(--light-green);
+	color: var(--black);
+  }
+  
+  
+  
+
 @media screen and (min-width: 590px) {
 	.name-style {
 		font-size: 2.5rem;

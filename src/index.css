@@ -133,9 +133,6 @@ a:hover {
 	background-color: var(--light-green);
 	color: var(--black);
   }
-  
-  
-  
 
 @media screen and (min-width: 590px) {
 	.name-style {

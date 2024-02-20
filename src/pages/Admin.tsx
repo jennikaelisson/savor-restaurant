@@ -14,7 +14,8 @@ const Admin = () => {
   };
 
   return (
-    <>
+    <><main className="flex-shrink mt-5">
+    <div className="container py-4">
       <h2>ADMIN</h2>
       {admin ? (
         <>
@@ -37,6 +38,7 @@ const Admin = () => {
       ) : (
         <Login handleAdminStatus={handleAdminStatus} />
       )}
+      </div></main>
     </>
   );
 };

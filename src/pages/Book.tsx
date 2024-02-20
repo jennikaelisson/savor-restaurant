@@ -77,6 +77,8 @@ const Book = () => {
   const tablesNeeded = Math.floor((selectedGuests - 1) / 6) + 1;
 
   return (
+    <main className="flex-shrink">
+			
     <div className="row">
       <div
         className=" p-5 col-12 col-md-6"
@@ -250,6 +252,7 @@ const Book = () => {
         />
       </div>
     </div>
+    </main>
   );
 };
 

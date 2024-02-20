@@ -2,7 +2,8 @@ import ContactForm from "../components/ContactForm";
 
 const Contact = () => {
 	return (
-		<>
+		<main className="flex-shrink mt-5">
+			<div className="container py-4">
 			<h1>CONTACT US</h1>
 			<section>
 				<p>
@@ -17,8 +18,8 @@ const Contact = () => {
 				<div>
 					<ContactForm />
 				</div>
-			</section>
-		</>
+			</section></div>
+		</main>
 	);
 };
 

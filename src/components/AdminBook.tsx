@@ -161,7 +161,7 @@ const AdminBook = () => {
                 )}
                 </p>
                
-                <div className="bg-secondary p-2 my-2">
+                <div className="light-background p-2 my-2">
                 <p className="card-text">
                     CustomerID:
                     <input

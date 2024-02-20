@@ -83,14 +83,17 @@ const AdminBook = () => {
 
   return (
     <>
-      <div className= 'col-12 col-lg-4'>
+    <div className="row">
+      <div className="col-12 col-lg-4">
         <b>Select Date:</b>
         <Calendar onChange={handleDateChange} value={selectedDate} />
-      </div>
-
-      <div>
-      <b>Bookings</b>
+        </div>
+      
+      
+      <div className="col-12 col-lg-8">
+       <b>Bookings</b>
       <div className="border">
+        
         {filteredBookings && filteredBookings.length > 0 ? (
           <>
             <h2>
@@ -99,10 +102,16 @@ const AdminBook = () => {
                 ? selectedDate.toLocaleDateString()
                 : ""}
             </h2>
+            
+            <div className="row">
             {filteredBookings.map((booking, index) => (
-              <div key={booking._id} className="border m-1">
-                <p>ID: {booking._id}</p>
-                Date:
+              <div key={booking._id} className="col-4">
+                <div className="card m-1">
+                  <div className="card-body">
+                          
+            <h5 className="card-title">Booking ID: {booking._id}</h5>
+            <p className="card-text">
+              Date:
                 {editingIndex === index ? (
                   <input
                     type="text"
@@ -114,7 +123,9 @@ const AdminBook = () => {
                 ) : (
                   <span>{booking.date}</span>
                 )}
-                <br />
+            </p>
+                
+            <p className="card-text">
                 Time:
                 {editingIndex === index ? (
                   <input
@@ -127,7 +138,9 @@ const AdminBook = () => {
                 ) : (
                   <span>{booking.time}</span>
                 )}
-                <br />
+            </p>
+
+             <p className="card-text">   
                 Number of Guests:
                 {editingIndex === index ? (
                   <input
@@ -146,9 +159,10 @@ const AdminBook = () => {
                 ) : (
                   <span>{booking.numberOfGuests}</span>
                 )}
-                <br />
+                </p>
+               
                 <div className="bg-secondary p-2 my-2">
-                  <p>
+                <p className="card-text">
                     CustomerID:
                     <input
                       type="text"
@@ -236,14 +250,20 @@ const AdminBook = () => {
                 >
                   Delete
                 </button>
+                </div>
+                </div>
+                </div>
+              
+              ))}
               </div>
-            ))}
           </>
         ) : (
           <h4 className="text-danger">No bookings available on this date</h4>
         )}
+        </div>
       </div>
       </div>
+      
     </>
   );
 };

@@ -1,7 +1,6 @@
 import AdminBook from "../components/AdminBook";
 import Login from "../components/Login";
 import { useState } from "react";
-import { AdminCreateBooking } from "../components/AdminCreateBooking";
 
 const Admin = () => {
   const [admin, setAdmin] = useState(
@@ -28,18 +27,8 @@ const Admin = () => {
             </div>
            </div>
           </div>
-            
-            
-            {/* <div className="p-2">
-              <div>
-                <h3>Add booking</h3>
-              </div>
-              <div>
-                <AdminCreateBooking />
-              </div>
-            </div> */}
           <button
-            className="btn btn-outline-primary"
+            className="btn btn-outline-primary button"
             onClick={() => handleAdminStatus(false)}
           >
             Logout

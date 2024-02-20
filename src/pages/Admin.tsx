@@ -16,12 +16,12 @@ const Admin = () => {
 
   return (
     <>
-      <h1>Admin</h1>
+      <h2>ADMIN</h2>
       {admin ? (
         <>
           <div className="p-2 bg-light border my-2">
             <div className="col-12">
-              <h1>Admin</h1>
+             
             </div>
 
             <div className="row p-2">
@@ -29,14 +29,14 @@ const Admin = () => {
                 <AdminBook />
               </div>
             </div>
-            <div className="p-2">
+            {/* <div className="p-2">
               <div>
                 <h3>Add booking</h3>
               </div>
               <div>
                 <AdminCreateBooking />
               </div>
-            </div>
+            </div> */}
           </div>
           <button
             className="btn btn-outline-primary"

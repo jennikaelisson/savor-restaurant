@@ -1,7 +1,6 @@
 import axios from "axios";
 export const get = async (url: string) => {
 	return await axios.get(url, {
-		method: "GET",
 		headers: {
 			accept: "application/json",
 		},
@@ -10,7 +9,6 @@ export const get = async (url: string) => {
 
 export const del = async (url: string) => {
 	return await axios.delete(url, {
-		method: "DELETE",
 		headers: {
 			accept: "application/json",
 		},
@@ -19,8 +17,18 @@ export const del = async (url: string) => {
 
 export const post = async (url: string, data: any) => {
 	return await axios.post(url, data, {
+		method: "POST",
 		headers: {
-			method: "POST",
+			"Content-Type": "application/json",
+			accept: "application/json",
+		},
+	});
+};
+
+export const put = async (url: string, data: any) => {
+	return await axios.put(url, data, {
+		method: "PUT",
+		headers: {
 			"Content-Type": "application/json",
 			accept: "application/json",
 		},

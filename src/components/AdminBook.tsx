@@ -17,6 +17,10 @@ const AdminBook = () => {
     setBookings(await getBookingsAndCustomerService());
   };
 
+  const resetEditing = () => {
+    setEditingIndex(null);
+  };
+
   const updateBooking = async (index: number) => {
     if (editingIndex === null) {
       setEditingIndex(index);
@@ -79,6 +83,7 @@ const AdminBook = () => {
 
   const handleDateChange = (date: Date | Date[]) => {
     setSelectedDate(date);
+    resetEditing();
   };
 
   return (

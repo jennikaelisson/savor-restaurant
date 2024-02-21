@@ -102,30 +102,29 @@ const AdminBook = () => {
 
 				<div className="col-12 col-lg-8">
 					<b>Bookings:</b>
-					<div className="border">
-						<>
-							<h2>{formatDate(selectedDate)}</h2>
-							{filteredBookings && filteredBookings.length > 0 ? (
-								<div className="row">
-									{filteredBookings.map((booking, index) => (
-										<AdminBookingCard
-											key={booking._id}
-											booking={booking}
-											index={index}
-											editingIndex={editingIndex}
-											handleInputChange={handleInputChange}
-											deleteBooking={deleteBooking}
-											updateBooking={updateBooking}
-										/>
-									))}
-								</div>
-							) : (
-								<h4 className="text-danger">
-									No bookings available on this date
-								</h4>
-							)}
-						</>
-					</div>
+
+					<>
+						<h2>{formatDate(selectedDate)}</h2>
+						{filteredBookings && filteredBookings.length > 0 ? (
+							<div className="row">
+								{filteredBookings.map((booking, index) => (
+									<AdminBookingCard
+										key={booking._id}
+										booking={booking}
+										index={index}
+										editingIndex={editingIndex}
+										handleInputChange={handleInputChange}
+										deleteBooking={deleteBooking}
+										updateBooking={updateBooking}
+									/>
+								))}
+							</div>
+						) : (
+							<h4 className="text-danger">
+								No bookings available on this date
+							</h4>
+						)}
+					</>
 				</div>
 			</div>
 		</>

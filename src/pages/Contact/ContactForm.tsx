@@ -156,22 +156,67 @@ const ContactForm = () => {
             I have read and understood the privacy policy
           </label>
         </div>
-        <a href="#" className="link-info">
+        <button
+          className="btn custom-btn-privacy mt-2"
+          data-bs-toggle="modal"
+          data-bs-target="#privacyPolicyModal"
+        >
           Our privacy policy
-        </a>
+        </button>
+
+        <div
+          className="modal fade"
+          id="privacyPolicyModal" 
+          aria-labelledby="privacyPolicyModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                Our privacy policy
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <div className="modal-body">
+              At Savor, we are committed to protecting your privacy and ensuring the security of your personal information. We collect and process your personal data solely for the purpose of providing you with the best dining experience possible. Your information, including your name, contact details, and dining preferences, is stored securely and used only for reservations, communication, and improving our services. <br /><br />
+
+              We do not sell, trade, or share your personal information with third parties without your consent. Any information provided to us is treated with the utmost confidentiality and will not be disclosed except as required by law or with your explicit permission. By using our services, you agree to the terms of this privacy policy. <br /><br />
+
+              For any questions or concerns regarding your privacy or our data practices, please contact us at privacy@savor.com.
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+         <br />
 
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn button mt-2"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#submitModal"
         >
           Submit
         </button>
         <div
           className="modal fade"
-          id="exampleModal"
-          aria-labelledby="exampleModalLabel"
+          id="submitModal" 
+          aria-labelledby="submitModalLabel" 
           aria-hidden="true"
         >
           <div className="modal-dialog">

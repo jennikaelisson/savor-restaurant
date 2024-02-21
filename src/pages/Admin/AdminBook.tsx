@@ -5,8 +5,8 @@ import {
 	deleteBookingService,
 	getBookingsAndCustomerService,
 	updateBookingAndCustomerService,
-} from "../services/bookingService.ts";
-import { Booking } from "../models/Booking.ts";
+} from "../../services/bookingService.ts";
+import { Booking } from "../../models/Booking.ts";
 
 const AdminBook = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
@@ -83,9 +83,7 @@ const AdminBook = () => {
 
 	const handleDateChange = (date: Date | Date[]) => {
 		setSelectedDate(date);
-		console.log("date change");
 		resetEditing();
-		console.log(filteredBookings);
 	};
 
 	return (

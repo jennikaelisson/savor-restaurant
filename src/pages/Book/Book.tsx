@@ -3,10 +3,10 @@ import "react-calendar/dist/Calendar.css";
 import {
 	getBookingsAndCustomerService,
 	createBookingService,
-} from "../services/bookingService.ts";
+} from "../../services/bookingService.ts";
 
 import { useState, useEffect } from "react";
-import { Booking } from "../models/Booking.ts";
+import { Booking } from "../../models/Booking.ts";
 
 const Book = () => {
 	interface FreeTables {

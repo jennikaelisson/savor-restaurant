@@ -1,8 +1,8 @@
-import HomeLayout from '../components/HomeLayout';
+import HomeLayout from "./HomeLayout";
 
 const Home = () => {
 	return (
-		<main className='flex-shrink'>
+		<main className="flex-shrink">
 			<HomeLayout />
 		</main>
 	);

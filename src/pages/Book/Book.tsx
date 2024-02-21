@@ -141,7 +141,7 @@ const Book = () => {
 								<label
 									className={`btn ${
 										freeTables["18:00"] < tablesNeeded
-											? "btn-danger"
+											? "btn-outline-dark  "
 											: "btn-outline-dark button"
 									} mx-2`}
 									htmlFor="time18"
@@ -160,7 +160,7 @@ const Book = () => {
 								<label
 									className={`btn ${
 										freeTables["21:00"] < tablesNeeded
-											? "btn-danger"
+											? "btn-outline-dark button bg-danger "
 											: "btn-outline-dark button"
 									} mx-2`}
 									htmlFor="time21"

@@ -1,8 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
 	const [navOpen, setNavOpen] = useState(true);
+	const location = useLocation().pathname;
+	useEffect(() => {
+		setNavOpen(false);
+	}, [location]);
 
 	return (
 		<>
@@ -29,8 +34,7 @@ const Header = () => {
 								<li className="nav-item border-end">
 									<Link
 										to="/"
-										className="nav-link active"
-										onClick={() => setNavOpen(false)}
+										className={`nav-link ${location == "/" ? "active" : ""}`}
 									>
 										Home
 									</Link>
@@ -38,37 +42,21 @@ const Header = () => {
 								<li className="nav-item  border-end">
 									<Link
 										to="/book"
-										className="nav-link "
-										onClick={() => setNavOpen(false)}
+										className={`nav-link ${
+											location == "/book" ? "active" : ""
+										}`}
 									>
 										Book table
 									</Link>
 								</li>
-								<li className="nav-item   border-end">
-									<Link
-										to="/contact"
-										className="nav-link "
-										onClick={() => setNavOpen(false)}
-									>
-										Contact us
-									</Link>
-								</li>
-								<li className="nav-item  border-end">
-									<Link
-										to="/cheat"
-										className="nav-link text-danger"
-										onClick={() => setNavOpen(false)}
-									>
-										Cheat
-									</Link>
-								</li>
 								<li className="nav-item">
 									<Link
-										to="/APItest"
-										className="nav-link text-warning"
-										onClick={() => setNavOpen(false)}
+										to="/contact"
+										className={`nav-link ${
+											location == "/contact" ? "active" : ""
+										}`}
 									>
-										API TEST
+										Contact us
 									</Link>
 								</li>
 							</ul>

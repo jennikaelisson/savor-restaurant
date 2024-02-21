@@ -4,9 +4,7 @@ import Home from "./pages/Home";
 import Book from "./pages/Book";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
-import Cheat from "./pages/Cheat";
 import Errorpage from "./pages/Errorpage";
-import APItest from "./pages/APItest";
 
 export const router = createBrowserRouter([
 	{
@@ -29,14 +27,6 @@ export const router = createBrowserRouter([
 			{
 				path: "/admin",
 				element: <Admin />,
-			},
-			{
-				path: "/cheat",
-				element: <Cheat />,
-			},
-			{
-				path: "/APItest",
-				element: <APItest />,
 			},
 		],
 	},

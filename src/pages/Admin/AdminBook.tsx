@@ -9,12 +9,17 @@ import {
 import { Booking } from "../../models/Booking.ts";
 
 const AdminBook = () => {
-	const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
+	type ValuePiece = Date | null;
+	type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+	const [selectedDate, setSelectedDate] = useState<Value>(new Date());
 	const [bookings, setBookings] = useState<Booking[]>([]);
 	const [editingIndex, setEditingIndex] = useState<number | null>(null);
 
 	const getBookings = async () => {
+		console.log("GETTING bookings ");
 		setBookings(await getBookingsAndCustomerService());
+		console.log("GET bookings complete");
 	};
 
 	const resetEditing = () => {
@@ -51,20 +56,23 @@ const AdminBook = () => {
 		);
 	};
 
-	const formatDate = (date: Date) => {
-		const year = date.getFullYear();
-		const month = ("0" + (date.getMonth() + 1)).slice(-2);
-		const day = ("0" + date.getDate()).slice(-2);
-		return `${year}-${month}-${day}`;
-	};
+	const formatDate = (date: Value): string => {
+		if (date instanceof Date) {
+			const year = date.getFullYear();
+			const month = ("0" + (date.getMonth() + 1)).slice(-2);
+			const day = ("0" + date.getDate()).slice(-2);
+			return `${year}-${month}-${day}`;
+		}
 
+		return "";
+	};
 	const filteredBookings = bookings.filter((booking: Booking) => {
 		const selectedDates = Array.isArray(selectedDate)
 			? selectedDate
 			: [selectedDate];
 
 		const selectedDateLocal = selectedDates.map((date) => {
-			const dateObject = new Date(date);
+			const dateObject = new Date(formatDate(date));
 			dateObject.setMinutes(
 				dateObject.getMinutes() - dateObject.getTimezoneOffset()
 			);
@@ -80,8 +88,7 @@ const AdminBook = () => {
 			(date) => formatDate(date) === formatDate(bookingDateLocal)
 		);
 	});
-
-	const handleDateChange = (date: Date | Date[]) => {
+	const handleDateChange = (date: Value) => {
 		setSelectedDate(date);
 		resetEditing();
 	};

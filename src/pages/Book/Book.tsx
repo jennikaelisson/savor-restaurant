@@ -7,6 +7,7 @@ import {
 
 import { useState, useEffect } from "react";
 import { Booking } from "../../models/Booking.ts";
+import BookingConfirmed from "./BookingConfirmed.tsx";
 
 const Book = () => {
 	interface FreeTables {
@@ -93,17 +94,12 @@ const Book = () => {
 				>
 					<p className="h1 pt-5">BOOKING</p>
 					{bookingConfirmed ? (
-						<div className="mt-3 alert alert-success" role="alert">
-							Booking confirmed! Thank you, {customer.name} {customer.lastname},
-							for your reservation. <br />
-							<br />
-							Date: {formatDate(selectedDate)}
-							<br />
-							Time: {selectedTime}
-							<br />
-							Guests: {selectedGuests}
-							<br />
-						</div>
+						<BookingConfirmed
+							name={customer.name + " " + customer.lastname}
+							date={formatDate(selectedDate)}
+							time={selectedTime}
+							guests={selectedGuests}
+						/>
 					) : (
 						<>
 							<div>
@@ -145,7 +141,7 @@ const Book = () => {
 								<label
 									className={`btn ${
 										freeTables["18:00"] < tablesNeeded
-											? "btn-danger"
+											? "btn-outline-dark  "
 											: "btn-outline-dark button"
 									} mx-2`}
 									htmlFor="time18"
@@ -164,7 +160,7 @@ const Book = () => {
 								<label
 									className={`btn ${
 										freeTables["21:00"] < tablesNeeded
-											? "btn-danger"
+											? "btn-outline-dark button bg-danger "
 											: "btn-outline-dark button"
 									} mx-2`}
 									htmlFor="time21"
@@ -272,7 +268,7 @@ const Book = () => {
 				</div>
 				<div className="col-12 col-md-6">
 					<img
-						src="src/img/Table.jpg"
+						src="src/assets/Table.jpg"
 						alt="A made up table"
 						className="img-fluid fade-in-container img-scale"
 					/>

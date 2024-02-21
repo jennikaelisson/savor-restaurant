@@ -7,9 +7,13 @@ import {
 	updateBookingAndCustomerService,
 } from "../../services/bookingService.ts";
 import { Booking } from "../../models/Booking.ts";
+import AdminBookingCard from "./AdminBookingCard.tsx";
 
 const AdminBook = () => {
-	const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
+	type ValuePiece = Date | null;
+	type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+	const [selectedDate, setSelectedDate] = useState<Value>(new Date());
 	const [bookings, setBookings] = useState<Booking[]>([]);
 	const [editingIndex, setEditingIndex] = useState<number | null>(null);
 
@@ -50,21 +54,28 @@ const AdminBook = () => {
 			)
 		);
 	};
-
-	const formatDate = (date: Date) => {
-		const year = date.getFullYear();
-		const month = ("0" + (date.getMonth() + 1)).slice(-2);
-		const day = ("0" + date.getDate()).slice(-2);
-		return `${year}-${month}-${day}`;
+	const handleDateChange = (date: Value) => {
+		setSelectedDate(date);
+		resetEditing();
 	};
 
+	const formatDate = (date: Value): string => {
+		if (date instanceof Date) {
+			const year = date.getFullYear();
+			const month = ("0" + (date.getMonth() + 1)).slice(-2);
+			const day = ("0" + date.getDate()).slice(-2);
+			return `${year}-${month}-${day}`;
+		}
+
+		return "";
+	};
 	const filteredBookings = bookings.filter((booking: Booking) => {
 		const selectedDates = Array.isArray(selectedDate)
 			? selectedDate
 			: [selectedDate];
 
 		const selectedDateLocal = selectedDates.map((date) => {
-			const dateObject = new Date(date);
+			const dateObject = new Date(formatDate(date));
 			dateObject.setMinutes(
 				dateObject.getMinutes() - dateObject.getTimezoneOffset()
 			);
@@ -81,11 +92,6 @@ const AdminBook = () => {
 		);
 	});
 
-	const handleDateChange = (date: Date | Date[]) => {
-		setSelectedDate(date);
-		resetEditing();
-	};
-
 	return (
 		<>
 			<div className="row">
@@ -96,197 +102,29 @@ const AdminBook = () => {
 
 				<div className="col-12 col-lg-8">
 					<b>Bookings:</b>
-					<div className="border">
+
+					<>
+						<h2>{formatDate(selectedDate)}</h2>
 						{filteredBookings && filteredBookings.length > 0 ? (
-							<>
-								<h2>
-									{" "}
-									{selectedDate instanceof Date
-										? selectedDate.toLocaleDateString()
-										: ""}
-								</h2>
-
-								<div className="row">
-									{filteredBookings.map((booking, index) => (
-										<div key={booking._id} className="col-12 col-lg-4">
-											<div className="card h-100 d-flex flex-fill">
-												<div className="card-body">
-													<h5 className="card-title">
-														Booking ID: {booking._id}
-													</h5>
-													<p className="card-text">
-														Date:
-														{editingIndex === index ? (
-															<input
-																type="text"
-																value={booking.date}
-																onChange={(e) =>
-																	handleInputChange(
-																		booking._id,
-																		"date",
-																		e.target.value
-																	)
-																}
-															/>
-														) : (
-															<span>{booking.date}</span>
-														)}
-													</p>
-
-													<p className="card-text">
-														Time:
-														{editingIndex === index ? (
-															<input
-																type="text"
-																value={booking.time}
-																onChange={(e) =>
-																	handleInputChange(
-																		booking._id,
-																		"time",
-																		e.target.value
-																	)
-																}
-															/>
-														) : (
-															<span>{booking.time}</span>
-														)}
-													</p>
-
-													<p className="card-text">
-														Number of Guests:
-														{editingIndex === index ? (
-															<input
-																type="number"
-																value={booking.numberOfGuests}
-																onChange={(e) =>
-																	handleInputChange(
-																		booking._id,
-																		"numberOfGuests",
-																		parseInt(e.target.value, 10)
-																	)
-																}
-																min="1"
-																max="240"
-															/>
-														) : (
-															<span>{booking.numberOfGuests}</span>
-														)}
-													</p>
-
-													<div className="light-background p-2 my-2">
-														<p className="card-text">
-															CustomerID:
-															<input
-																type="text"
-																readOnly
-																value={booking.customerId}
-																onChange={(e) =>
-																	handleInputChange(
-																		booking._id,
-																		"customerId",
-																		e.target.value
-																	)
-																}
-															/>
-														</p>
-														<hr />
-														Name:
-														{editingIndex === index ? (
-															<>
-																<input
-																	type="text"
-																	value={booking.customer?.name || ""}
-																	onChange={(e) =>
-																		handleInputChange(
-																			booking._id,
-																			"name",
-																			e.target.value
-																		)
-																	}
-																/>
-																<input
-																	type="text"
-																	value={booking.customer?.lastname || ""}
-																	onChange={(e) =>
-																		handleInputChange(
-																			booking._id,
-																			"lastname",
-																			e.target.value
-																		)
-																	}
-																/>
-															</>
-														) : (
-															<span>
-																{booking.customer?.name}{" "}
-																{booking.customer?.lastname}
-															</span>
-														)}
-														<br />
-														Email:
-														{editingIndex === index ? (
-															<input
-																type="text"
-																value={booking.customer?.email || ""}
-																onChange={(e) =>
-																	handleInputChange(
-																		booking._id,
-																		"email",
-																		e.target.value
-																	)
-																}
-															/>
-														) : (
-															<span>{booking.customer?.email}</span>
-														)}
-														<br />
-														Phone:
-														{editingIndex === index ? (
-															<input
-																type="text"
-																value={booking.customer?.phone || ""}
-																onChange={(e) =>
-																	handleInputChange(
-																		booking._id,
-																		"phone",
-																		e.target.value
-																	)
-																}
-															/>
-														) : (
-															<span>{booking.customer?.phone}</span>
-														)}
-													</div>
-													<button
-														className={`btn ${
-															editingIndex === index
-																? "custom-btn-save"
-																: "custom-btn-edit"
-														}`}
-														onClick={() => updateBooking(index)}
-													>
-														{editingIndex === index ? "Save" : "Edit"}
-													</button>
-													<button
-														className="btn btn-danger custom-btn-delete"
-														onClick={() => {
-															deleteBooking(booking._id);
-														}}
-													>
-														Delete
-													</button>
-												</div>
-											</div>
-										</div>
-									))}
-								</div>
-							</>
+							<div className="row">
+								{filteredBookings.map((booking, index) => (
+									<AdminBookingCard
+										key={booking._id}
+										booking={booking}
+										index={index}
+										editingIndex={editingIndex}
+										handleInputChange={handleInputChange}
+										deleteBooking={deleteBooking}
+										updateBooking={updateBooking}
+									/>
+								))}
+							</div>
 						) : (
 							<h4 className="text-danger">
 								No bookings available on this date
 							</h4>
 						)}
-					</div>
+					</>
 				</div>
 			</div>
 		</>

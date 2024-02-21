@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 
 const Header = () => {
 	const [navOpen, setNavOpen] = useState(true);

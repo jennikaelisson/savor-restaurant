@@ -1,6 +1,6 @@
 import FadeInComponent from "../../styles/animation/FadeInComponent";
 import SlideUpComponent from "../../styles/animation/SlideUpComponent";
-import "../styles/StartPageStyle/startPageStyle.css";
+import "../../styles/StartPageStyle/startPageStyle.css";
 
 const HomeLayout = () => {
 	return (

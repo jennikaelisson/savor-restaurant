@@ -272,7 +272,7 @@ const Book = () => {
 				</div>
 				<div className="col-12 col-md-6">
 					<img
-						src="src/img/Table.jpg"
+						src="src/assets/Table.jpg"
 						alt="A made up table"
 						className="img-fluid fade-in-container img-scale"
 					/>

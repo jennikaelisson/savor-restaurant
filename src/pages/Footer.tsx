@@ -39,9 +39,9 @@ const Footer = () => {
                     <h3>SOCIAL</h3>
                     
                     <div>
-                      <img src="src/img/facebook.png" alt="Facebook icon" />{" "}
-                      <img src="src/img/youtube.png" alt="Youtube icon" />{" "}
-                      <img src="src/img/instagram.png" alt="Instagram icon" />
+                      <img src="src/assets/facebook.png" alt="Facebook icon" />{" "}
+                      <img src="src/assets/youtube.png" alt="Youtube icon" />{" "}
+                      <img src="src/assets/instagram.png" alt="Instagram icon" />
                     </div>
                   </div>
                 </div>

@@ -5,8 +5,8 @@ import {
   deleteBookingService,
   getBookingsAndCustomerService,
   updateBookingAndCustomerService,
-} from "../services/bookingService";
-import { Booking } from "../models/Booking";
+} from "../services/bookingService.ts";
+import { Booking } from "../models/Booking.ts";
 
 const AdminBook = () => {
   const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
@@ -22,6 +22,7 @@ const AdminBook = () => {
   };
 
   const updateBooking = async (index: number) => {
+    console.log(bookings[index]);
     if (editingIndex === null) {
       setEditingIndex(index);
     } else {
@@ -109,7 +110,7 @@ const AdminBook = () => {
             </h2>
             
             <div className="row">
-            {filteredBookings.map((booking, index) => (
+            {bookings.map((booking, index) => (
               <div key={booking._id} className="col-12 col-lg-4">
                 <div className="card h-100 d-flex flex-fill">
                   <div className="card-body">
@@ -238,7 +239,7 @@ const AdminBook = () => {
                   )}
                 </div>
                 <button
-                  type="button"
+                  
                   className={`btn ${
                     editingIndex === index ? "custom-btn-save" : "custom-btn-edit"
                   }`}
@@ -247,7 +248,7 @@ const AdminBook = () => {
                   {editingIndex === index ? "Save" : "Edit"}
                 </button>
                 <button
-                  type="button"
+                  
                   className="btn btn-danger custom-btn-delete"
                   onClick={() => {
                     deleteBooking(booking._id);

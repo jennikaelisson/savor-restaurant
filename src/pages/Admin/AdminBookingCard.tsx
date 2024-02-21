@@ -21,7 +21,7 @@ const AdminBookingCard = (props: AdminBookingCardProps) => {
 
 	return (
 		<>
-			<div key={booking._id} className="col-12 col-lg-4">
+			<div key={booking._id} className="col-12 col-lg-6 col-xl-4">
 				<div className="card h-100 d-flex flex-fill">
 					<div className="card-body">
 						<h5 className="card-title">Booking ID: {booking._id}</h5>

@@ -158,11 +158,11 @@ const ContactForm = () => {
         </div>
         <a href="#" className="link-info">
           Our privacy policy
-        </a>
+        </a> <br />
 
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn button mt-2"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >

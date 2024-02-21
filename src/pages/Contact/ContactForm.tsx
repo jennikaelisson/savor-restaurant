@@ -156,22 +156,63 @@ const ContactForm = () => {
             I have read and understood the privacy policy
           </label>
         </div>
-        <a href="#" className="link-info">
+        <button
+          className="btn button mt-2"
+          data-bs-toggle="modal"
+          data-bs-target="#privacyPolicyModal"
+        >
           Our privacy policy
-        </a> <br />
+        </button>
+
+        <div
+          className="modal fade"
+          id="privacyPolicyModal" 
+          aria-labelledby="privacyPolicyModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                Our privacy policy
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <div className="modal-body">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, eius aspernatur! Delectus explicabo necessitatibus, cupiditate itaque odio dolore officiis nulla corrupti aut, possimus fugit excepturi similique sint iure dolorum ipsam modi laborum sunt voluptatem enim vero, illum aspernatur dolorem. Voluptatibus fugiat ipsam nostrum voluptate delectus, asperiores minima maiores error magni blanditiis totam et, mollitia, temporibus accusamus est maxime velit fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque ullam eos suscipit non enim nisi obcaecati quibusdam ab, a quam provident minima accusamus asperiores culpa rerum eligendi quas aut? Itaque, odit ad laboriosam ullam inventore magni neque fugiat non tempora exercitationem suscipit iste laborum temporibus voluptas nihil! Dolorem expedita sit facilis corporis quos impedit, exercitationem quasi animi cumque eos fugiat.
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+         <br />
 
         <button
           type="submit"
           className="btn button mt-2"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#submitModal"
         >
           Submit
         </button>
         <div
           className="modal fade"
-          id="exampleModal"
-          aria-labelledby="exampleModalLabel"
+          id="submitModal" 
+          aria-labelledby="submitModalLabel" 
           aria-hidden="true"
         >
           <div className="modal-dialog">

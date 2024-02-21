@@ -23,7 +23,7 @@ const Contact = () => {
                         </section>
                     </div>
                 
-                    <div className="col-12 col-md-6 d-none d-md-block" style={{ maxHeight: "800px", overflow: "hidden" }}>
+                    <div className="col-12 col-md-6 d-none d-md-block" style={{ maxHeight: "820px", overflow: "hidden" }}>
                         <img
                             src="src/assets/ContactPic.jpg"
                             alt="A made up table"

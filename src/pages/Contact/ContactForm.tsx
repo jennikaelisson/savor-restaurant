@@ -157,7 +157,7 @@ const ContactForm = () => {
           </label>
         </div>
         <button
-          className="btn button mt-2"
+          className="btn custom-btn-privacy mt-2"
           data-bs-toggle="modal"
           data-bs-target="#privacyPolicyModal"
         >

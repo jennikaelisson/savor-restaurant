@@ -134,6 +134,16 @@ a:hover {
 	color: var(--black);
   }
 
+.custom-btn-privacy {
+	border:none;
+	border-radius: 0;
+	color: var(--black);
+	padding-left: 0;
+  }
+.custom-btn-privacy:hover {
+	text-decoration-line: underline;
+ } 
+
 @media screen and (min-width: 590px) {
 	.name-style {
 		font-size: 2.5rem;

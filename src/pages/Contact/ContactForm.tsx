@@ -185,7 +185,11 @@ const ContactForm = () => {
               </div>
 
               <div className="modal-body">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, eius aspernatur! Delectus explicabo necessitatibus, cupiditate itaque odio dolore officiis nulla corrupti aut, possimus fugit excepturi similique sint iure dolorum ipsam modi laborum sunt voluptatem enim vero, illum aspernatur dolorem. Voluptatibus fugiat ipsam nostrum voluptate delectus, asperiores minima maiores error magni blanditiis totam et, mollitia, temporibus accusamus est maxime velit fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque ullam eos suscipit non enim nisi obcaecati quibusdam ab, a quam provident minima accusamus asperiores culpa rerum eligendi quas aut? Itaque, odit ad laboriosam ullam inventore magni neque fugiat non tempora exercitationem suscipit iste laborum temporibus voluptas nihil! Dolorem expedita sit facilis corporis quos impedit, exercitationem quasi animi cumque eos fugiat.
+              At Savor, we are committed to protecting your privacy and ensuring the security of your personal information. We collect and process your personal data solely for the purpose of providing you with the best dining experience possible. Your information, including your name, contact details, and dining preferences, is stored securely and used only for reservations, communication, and improving our services. <br /><br />
+
+              We do not sell, trade, or share your personal information with third parties without your consent. Any information provided to us is treated with the utmost confidentiality and will not be disclosed except as required by law or with your explicit permission. By using our services, you agree to the terms of this privacy policy. <br /><br />
+
+              For any questions or concerns regarding your privacy or our data practices, please contact us at privacy@savor.com.
               </div>
               <div className="modal-footer">
                 <button
